@@ -1,5 +1,7 @@
 package com.reservemate.ReserveMate_backend.customer;
 
-public class Customer {
+import com.reservemate.ReserveMate_backend.user.User;
+
+public class Customer extends User{
 
 }
