@@ -1,5 +1,7 @@
 package com.reservemate.ReserveMate_backend.admin;
 
-public class Admin {
+import com.reservemate.ReserveMate_backend.user.User;
+
+public class Admin extends User{
 
 }
