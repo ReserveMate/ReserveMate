@@ -1,9 +1,11 @@
 package com.reservemate.ReserveMate_backend.restaurant;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-
+import com.reservemate.ReserveMate_backend.reservation.Reservation;
+import com.reservemate.ReserveMate_backend.table.RestaurantTable;
 import com.reservemate.ReserveMate_backend.user.Role;
 import com.reservemate.ReserveMate_backend.user.User;
 
@@ -28,7 +30,7 @@ public class Restaurant extends User {
 	private String Menu;
 	
 	@OneToMany(mappedBy = "restaurant")
-	private List<Facility> facility;
+	private List<Facility> facility = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "restaurant")
 	private List<Advertisement> advertisement;
@@ -36,6 +38,13 @@ public class Restaurant extends User {
 	private String operationHours;
 	 
 	private String descirption;
+	
+	@OneToMany(mappedBy = "restaurant")
+    private List<RestaurantTable> tables = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Reservation> reservations = new ArrayList<>();
 	 
 	
 	
