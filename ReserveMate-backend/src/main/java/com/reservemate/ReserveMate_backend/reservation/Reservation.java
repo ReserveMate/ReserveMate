@@ -52,6 +52,7 @@ public class Reservation {
 
 	 @UpdateTimestamp
 	 private LocalDateTime lastModified;
+	 private LocalDateTime deleted;
 	 
 	 @ManyToOne
    	 @JoinColumn(name = "customer_id")

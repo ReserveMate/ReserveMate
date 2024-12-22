@@ -1,15 +1,15 @@
 package com.reservemate.ReserveMate_backend.user;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
 import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.ElementCollection;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,8 +45,13 @@ public class User {
 
 	private String mobile;
 	
-	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-	private List<Role> roles;
+	private String picture;
+	
+	private String role;
+	
+	private String district;
+	
+	private String city;
 	
 	@CreationTimestamp
 	private LocalDateTime createDateTime;
@@ -55,5 +60,6 @@ public class User {
 	private LocalDateTime updatedDateTime;
 	
 	
+
 
 }
