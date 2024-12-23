@@ -9,7 +9,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RestaurantRegistrationDTO {
-	
+
+	private int statusCode;
+	private String error;
+	private String message;
+	private String token;
+	private String refreshToken;
+	private String expirationTime;
 	private String email;
     private String password;
     private String name;
