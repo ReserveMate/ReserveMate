@@ -4,8 +4,14 @@ import java.time.LocalDateTime;
 
 import com.reservemate.ReserveMate_backend.user.User;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@Entity
+@NoArgsConstructor
+@DiscriminatorValue(value = "Admin")
 public class Admin extends User{
 
 	@Builder

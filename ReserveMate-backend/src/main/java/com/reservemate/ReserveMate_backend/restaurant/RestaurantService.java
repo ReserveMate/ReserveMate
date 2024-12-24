@@ -1,5 +1,9 @@
 package com.reservemate.ReserveMate_backend.restaurant;
 
-public class RestaurantService {
+public interface RestaurantService {
+	
+	RestaurantRegistrationDTO registerRestaurant(RestaurantRegistrationDTO restaurantRegistrationRequest);
+	
+	
 
 }
