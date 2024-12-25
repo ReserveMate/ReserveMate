@@ -51,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			if (usersResult.getId() > 0) { 
 				customerSignup.setUser((usersResult));
-				customerSignup.setMessage("User Saved Successfully");
+				customerSignup.setMessage("Signed Up Successfully");
 				customerSignup.setStatusCode(200);
 			}
 
