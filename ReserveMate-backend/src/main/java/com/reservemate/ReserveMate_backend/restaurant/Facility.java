@@ -25,6 +25,8 @@ public class Facility {
 	
 	private String description;
 	
+	private String facilityPicture;
+	
 	@ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;

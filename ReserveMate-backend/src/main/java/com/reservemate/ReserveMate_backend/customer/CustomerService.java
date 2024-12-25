@@ -1,5 +1,13 @@
 package com.reservemate.ReserveMate_backend.customer;
 
-public class CustomerService {
+import java.util.List;
+
+public interface CustomerService {
+	
+	CustomerSignupDTO customerSignup(CustomerSignupDTO customerSignupRequest);
+
+	List<Customer> getAllCustomers();
+
+	Customer findById(long id);
 
 }

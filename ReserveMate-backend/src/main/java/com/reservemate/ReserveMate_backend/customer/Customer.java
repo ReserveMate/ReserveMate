@@ -18,8 +18,6 @@ import lombok.Builder;
 
 import lombok.NoArgsConstructor;
 
-
-
 @Entity
 @NoArgsConstructor
 @DiscriminatorValue(value = "Customer")

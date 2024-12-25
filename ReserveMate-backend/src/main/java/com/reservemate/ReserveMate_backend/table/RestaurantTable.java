@@ -32,6 +32,7 @@ public class RestaurantTable {
 	private int capacity;
 	private String description;
 	private String status;
+	private String restaurantTablePicture;
 
 	@ManyToOne
 	@JoinColumn(name = "restaurant_id")

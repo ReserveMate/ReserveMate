@@ -20,7 +20,7 @@ public class Advertisement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String Advertisement;
+	private String advertisementPost;
 	
 	@ManyToOne
 	@JoinColumn(name = "restaurant_id")
