@@ -2,6 +2,8 @@
 import React from 'react';
 import './App.css';
 import Register from './components/Register'; // Import Register component
+import SignIn from './components/SignIn';
+
 
 function App() {
   return (
