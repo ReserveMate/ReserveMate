@@ -1,0 +1,109 @@
+/* register.css */
+.register-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.register-left {
+  flex: 1;
+  align-items: center;
+  position: relative;
+}
+
+.overlay {
+  display: flex; /* Enable Flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: flex-end; /* Align to the right horizontally */
+  position: absolute; /* Position it relative to the parent container */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Fill the parent container */
+  padding-right: 20px; /* Optional: Add some space from the right edge */
+}
+
+.logo-image {
+  width: 460px; /* Adjust the width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Prevent overflow */
+  display: block; /* Ensure it's treated as a block element */
+}
+
+
+.register-right {
+  flex: 1;
+  display: flex; /* Enable Flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Align to the left horizontally */
+  background: #fff;
+  padding-left: 40px; /* Add some padding for spacing from the left edge */
+}
+
+
+.form-container {
+  width: 90%;
+  max-width: 400px;
+  
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+label {
+  display: inline-block;
+  margin-right: auto; /* Push the label to the right */
+  text-align: left; /* Align the label's text to the right */
+  font-weight: bold;
+}
+
+
+input {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.terms {
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-btn {
+  background: linear-gradient(to right, #841906, #891530);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  opacity: 0.9;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: gray;
+  cursor: pointer;
+}
