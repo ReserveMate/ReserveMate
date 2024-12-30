@@ -10,6 +10,7 @@ public interface RestaurantService {
 
 	Restaurant findById(long id);
 	
-	
+	RestaurantRegistrationDTO updatedRestaurantProfile(Integer restaurantId, Restaurant updatedRestaurantProfile);
 
+	RestaurantRegistrationDTO getRestaurantInfo(String email);
 }

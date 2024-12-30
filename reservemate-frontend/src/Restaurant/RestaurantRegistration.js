@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/Register.css'; // Example if CSS is in a styles folder
-import logo from '../assets/logo.png'; // Adjust the path if needed
+import '../styles/RestaurantRegistration.css'; 
+import logo from '../assets/logo.png'; 
 
-const Register = () => {
+const RestaurantRegistration = () => {
   return (
     <div className="register-container">
       <div className="register-left">
@@ -47,4 +47,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RestaurantRegistration;

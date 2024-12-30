@@ -44,6 +44,7 @@
   
   /* Form */
   form {
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -116,7 +117,8 @@
     justify-content: center;
     cursor: pointer;
   }
-  
+
+
   .social-btn img {
     max-width: 24px;
     max-height: 24px;
@@ -137,3 +139,33 @@
     text-decoration: underline;
   }
   
+
+.profile-picture-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.profile-picture-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  cursor: pointer;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.profile-picture-preview:hover {
+  transform: scale(1.05);
+}
+
+.logo-image {
+  width: 460px; 
+  height: auto; 
+  max-width: 100%; 
+  display: block; 
+}

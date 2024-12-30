@@ -39,7 +39,7 @@ public class User implements UserDetails{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+	private Integer id;
 
 	private String email;
 

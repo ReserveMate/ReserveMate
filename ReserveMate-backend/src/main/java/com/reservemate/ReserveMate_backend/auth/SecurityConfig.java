@@ -32,10 +32,11 @@ public class SecurityConfig {
 	  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 	        httpSecurity.csrf(AbstractHttpConfigurer::disable)
 	                .cors(Customizer.withDefaults())
-	                .authorizeHttpRequests(request-> request.requestMatchers("/auth/**", "/public/**").permitAll()
-	                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-	                        .requestMatchers("/user/**").hasAnyAuthority("USER")
-	                        .requestMatchers("/restaurant/**").hasAnyAuthority("RESTAURANT")
+	                .authorizeHttpRequests(request-> request
+	                	   .requestMatchers("/public/**","/auth/**","/restaurant/**" ).permitAll()
+	                       .requestMatchers("/admin/**").hasAuthority("ADMIN")
+	                       .requestMatchers("/user/**").hasAuthority("USER")
+	                       //.requestMatchers("/restaurant/**").hasAuthority("RESTAURANT")
 	                        //.requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
 	                        .anyRequest().authenticated())
 	                .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -45,13 +46,13 @@ public class SecurityConfig {
 	        return httpSecurity.build();
 	    }
 
-	  @Bean
-	    public AuthenticationProvider authenticationProvider(){
-	        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-	        daoAuthenticationProvider.setUserDetailsService(authService);
-	        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-	        return daoAuthenticationProvider;
-	    }
+		@Bean
+		public AuthenticationProvider authenticationProvider() {
+			DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+			daoAuthenticationProvider.setUserDetailsService(authService);
+			daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+			return daoAuthenticationProvider;
+		}
 
 	    @Bean
 	    public PasswordEncoder passwordEncoder(){
