@@ -5,12 +5,19 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.reservemate.ReserveMate_backend.customer.Customer;
+import com.reservemate.ReserveMate_backend.restaurant.Restaurant;
+import com.reservemate.ReserveMate_backend.table.RestaurantTable;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,6 +52,19 @@ public class Reservation {
 
 	 @UpdateTimestamp
 	 private LocalDateTime lastModified;
+	 private LocalDateTime deleted;
+	 
+	 @ManyToOne
+   	 @JoinColumn(name = "customer_id")
+	 private Customer customer;
+
+	 @ManyToOne
+	 @JoinColumn(name = "table_id")
+	 private RestaurantTable table;
+
+	 @ManyToOne
+	 @JoinColumn(name = "restaurant_id")
+	 private Restaurant restaurant;
 
 	
 }
