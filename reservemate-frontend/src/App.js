@@ -1,14 +1,15 @@
 // App.js
 import React from 'react';
 import './App.css';
-import Register from './components/Register'; // Import Register component
-import SignIn from './components/SignIn';
+import RestaurantRegistration from './Restaurant/RestaurantRegistration'; 
+import CustomerSignup from './Customer/CustomerSignup';
+import Login from './CommonComponents/login';
 
 
 function App() {
   return (
     <div className="App">
-      <Register /> {/* Use Register component */}
+      <CustomerSignup /> {/* Use Register component */}
     </div>
   );
 }
