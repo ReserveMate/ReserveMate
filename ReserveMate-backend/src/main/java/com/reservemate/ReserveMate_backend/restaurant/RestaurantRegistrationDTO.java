@@ -18,9 +18,7 @@ public class RestaurantRegistrationDTO {
 	private int statusCode;
 	private String error;
 	private String message;
-	private String token;
-	private String refreshToken;
-	private String expirationTime;
+	
 	
 	private String email;
     private String password;
@@ -34,9 +32,10 @@ public class RestaurantRegistrationDTO {
     private String menu; 
     private String operationHours;
     private String description;
-    private List<RestaurantTable> tableList;
-    private List<Facility> facilityList;
-    private List<Advertisement> advertisementList;
+	/*
+	 * private List<RestaurantTable> tableList; private List<Facility> facilityList;
+	 * private List<Advertisement> advertisementList;
+	 */
     private User user;
     private List<User> userList;
     

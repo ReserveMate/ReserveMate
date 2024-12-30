@@ -38,14 +38,16 @@ public class RestaurantServiceImpl implements RestaurantService{
 
 
 		try {
+			
 			Restaurant restaurant = new Restaurant();
+			
 			restaurant.setName(restaurantRegistration.getName());
 			restaurant.setEmail(restaurantRegistration.getEmail());
 			restaurant.setCity(restaurantRegistration.getCity());
 			restaurant.setDistrict(restaurantRegistration.getDistrict());
 			restaurant.setMobile(restaurantRegistration.getMobile());
 			restaurant.setPicture(restaurantRegistration.getPicture());
-			restaurant.setRole("RESTAURANT");
+			restaurant.setRole("ROLE_RESTAURANT");
 			restaurant.setPassword(passwordEncoder.encode(restaurantRegistration.getPassword()));
 			restaurant.setAddress(restaurantRegistration.getAddress());
 			restaurant.setMenu(restaurantRegistration.getMenu());
