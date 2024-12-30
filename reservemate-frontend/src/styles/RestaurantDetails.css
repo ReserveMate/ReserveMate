@@ -1,0 +1,218 @@
+/* RestaurantDetails.css */
+
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header Styles */
+  .header {
+    background-color: #800000;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header .logo {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header nav ul li {
+    margin: 0 20px;
+  }
+  
+  .header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .header nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main Content */
+  .restaurant-details {
+    margin-top: 150px; /* Ensure the content starts below the fixed header */
+   
+    
+  }
+  
+  .restaurant-info {
+    display: flex;
+    justify-content: space-between; /* Ensure space between image and text */
+    align-items: center; /* Vertically align content */
+    padding: 20px;
+    background-color: #f4f4f4;
+    width: 100%;
+   
+  }
+  
+  .restaurant-image img {
+    width: 50%; /* Ensure the image is responsive */
+    max-width: 500px; /* Ensure image doesn't stretch too far */
+    border-radius: 20px; /* Rounded corners for the image */
+    object-fit: cover; /* Ensures the image covers the area without distorting */
+  }
+  
+  .restaurant-details-text {
+    padding-left: 20px;
+    width: 150%;
+  }
+  
+  .restaurant-details-text h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  .restaurant-details-text p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .buttons .btn {
+    background-color: #B22222;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .buttons .btn:hover {
+    background-color: #800000;
+  }
+  
+  /* Reservation Section */
+  .reserve-section {
+    background-color: #ffffff;
+    padding: 20px;
+  }
+  
+  .reserve-section .reserve-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .reserve-section .reserve-form select,
+  .reserve-section .reserve-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .reserve-section .reserve-form .btn {
+    background-color: #800000;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .reserve-section .reserve-form .btn:hover {
+    background-color: #B22222;
+  }
+  
+  /* Facilities and Reviews Section */
+  .facilities-reviews {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .facilities,
+  .reviews {
+    width: 48%;
+  }
+  
+  .facilities {
+    background-color: #ADD8E6; /* Light blue for Facilities */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .facilities .facilities-box {
+    max-height: 200px;
+    overflow-y: auto; /* Allows scrolling if there are more textareas */
+  }
+  
+  .facilities textarea {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .reviews textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .reviews .rating label {
+    font-size: 14px;
+  }
+  
+  .reviews input[type="range"] {
+    width: 100%;
+  }
+  
+  .reviews .btn {
+    background-color: #800000;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .reviews .btn:hover {
+    background-color: #B22222;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #800000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .footer .btn {
+    background-color: #B22222;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .footer .btn:hover {
+    background-color: #800000;
+  }
+  
