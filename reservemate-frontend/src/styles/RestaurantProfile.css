@@ -1,0 +1,171 @@
+/* RestaurantProfile.css */
+
+/* Header and Navigation Styles */
+.header {
+    background: linear-gradient(90deg, #800000, #b22222); /* Gradient from red to dark red */
+    color: white;
+    display: flex;
+    flex-direction: column; /* Stack logo and nav vertically */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    padding-bottom: 10px; /* Some space at the bottom for the nav links */
+  }
+  
+  /* Top Section: Logo */
+  .header .top-section {
+    padding-top: 20px; /* Space above the logo */
+    text-align: center;
+    border-bottom: 2px solid white; /* Small white line separating the logo and the navigation */
+  }
+  
+  .header .logo {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-bottom: 0.000001px solid white; /* Small white line separating the logo and the navigation */
+
+  }
+  
+  /* Navigation Styles */
+  .nav {
+    display: flex;
+    justify-content: center; /* Center the nav links horizontally */
+    margin-top: 10px;
+  }
+  
+  .nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav ul li {
+    margin: 0 30px; /* More spacing between the links */
+    cursor: pointer;
+    font-size: 18px; /* Slightly larger font for the links */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase; /* All text in uppercase */
+    padding: 10px 20px;
+  }
+  
+  .nav ul li:hover {
+    color: #fff;
+    background-color: #800000; /* Background color on hover */
+    text-decoration: none;
+  }
+  
+  .nav ul li.selected {
+    color: #fff;
+    background-color: #B22222; /* Red background for selected item */
+  }
+  
+  /* Profile Section Styles */
+  .profile-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px; /* Push content below the fixed header */
+    padding: 20px;
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4; /* Light background for the profile section */
+    border-radius: 15px;
+  }
+  
+  .restaurant-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .left-container {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .restaurant-name h1 {
+    font-size: 36px;
+    color: #333;
+  }
+  
+  .restaurant-name button {
+    font-size: 16px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .restaurant-name button:hover {
+    background-color: #B22222;
+  }
+  
+  .restaurant-description h2 {
+    font-size: 24px;
+    color: #555;
+  }
+  
+  .restaurant-description p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-description button {
+    font-size: 16px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  .restaurant-description button:hover {
+    background-color: #B22222;
+  }
+  
+  .right-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .restaurant-image-container {
+    text-align: center;
+    border: 2px solid #800000;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .restaurant-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .restaurant-image-container button {
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  .restaurant-image-container button:hover {
+    background-color: #B22222;
+  }
+  

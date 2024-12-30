@@ -3,12 +3,15 @@ import React from 'react';
 import './App.css';
 import Register from './components/Register'; // Import Register component
 import SignIn from './components/SignIn';
+import RestaurantProfile from './components/RestaurantProfile';
+import RestaurantDetails from './components/RestaurantDetails';
+
 
 
 function App() {
   return (
-    <div className="App">
-      <Register /> {/* Use Register component */}
+    <div className="app">
+      <RestaurantDetails />
     </div>
   );
 }
