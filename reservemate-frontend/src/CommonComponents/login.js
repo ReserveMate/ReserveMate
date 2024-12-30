@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/signIn.css';
+import '../styles/Login.css';
 import facebookIcon from '../assets/facebook-icon.png';
 import googleIcon from '../assets/google-icon.png';
 import appleIcon from '../assets/apple-icon.png';
 
-const SignIn = () => {
+const login = () => {
   return (
     <div className="sign-in-container">
       <div className="header">
@@ -13,11 +13,13 @@ const SignIn = () => {
         </h1>
       </div>
       <div className="sign-in-content">
-        <h2>Sign in or create an account</h2>
+        <h2>Log in </h2>
         <form>
           <label htmlFor="email">Email address</label>
           <input type="email" id="email" placeholder="Enter your email address" />
-          <button type="submit" className="primary-btn">Continue with email</button>
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" />
+          <button type="submit" className="primary-btn">Log In</button>
         </form>
         <div className="divider">
           <hr />
@@ -44,4 +46,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default login;
