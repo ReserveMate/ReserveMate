@@ -9,5 +9,9 @@ public interface CustomerService {
 	List<Customer> getAllCustomers();
 
 	Customer findById(long id);
+	
+	CustomerSignupDTO updatedCustomerProfile(Integer customerId, Customer updatedCustomerProfile);
+	
+	CustomerSignupDTO getCustomerInfo(String email);
 
 }

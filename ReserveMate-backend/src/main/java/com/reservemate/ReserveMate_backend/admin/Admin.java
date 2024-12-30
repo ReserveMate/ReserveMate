@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Admin extends User{
 
 	@Builder
-    public Admin(long id, String email, String password, String name, String mobile, String picture, String role, 
+    public Admin(Integer id, String email, String password, String name, String mobile, String picture, String role, 
     		String district, String city, LocalDateTime createDateTime,
 			LocalDateTime updatedDateTime ) {
     	super(id, email, password, name, mobile, picture,role, district, city, createDateTime,

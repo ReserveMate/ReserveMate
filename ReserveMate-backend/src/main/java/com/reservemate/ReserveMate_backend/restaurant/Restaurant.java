@@ -46,7 +46,7 @@ public class Restaurant extends User {
     private List<Reservation> reservations = new ArrayList<>();
 	 
     @Builder
-    public Restaurant(long id, String email, String password, String name, String mobile, String picture, String role, 
+    public Restaurant(Integer id, String email, String password, String name, String mobile, String picture, String role, 
     		String district, String city, String address, String menu, List<Facility> facility, List<Advertisement> advertisement, 
     		List<RestaurantTable> tables, List<Reservation> reservation, String operationHours, String description, LocalDateTime createDateTime,
 			LocalDateTime updatedDateTime ) {

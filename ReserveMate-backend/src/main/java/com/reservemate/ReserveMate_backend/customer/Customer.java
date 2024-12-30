@@ -28,7 +28,7 @@ public class Customer extends User{
     private List<Reservation> reservations = new ArrayList<>();
     
     @Builder
-    public Customer(long id, String email, String password, String name, String mobile, String picture, String role, 
+    public Customer(Integer id, String email, String password, String name, String mobile, String picture, String role, 
     		String district, String city, List<Reservation> reservation, LocalDateTime createDateTime,
 			LocalDateTime updatedDateTime ) {
     	super(id, email, password, name, mobile, picture,role, district, city, createDateTime,
