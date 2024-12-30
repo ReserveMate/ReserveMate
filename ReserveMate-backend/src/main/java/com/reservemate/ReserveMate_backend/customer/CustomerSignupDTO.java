@@ -16,9 +16,7 @@ public class CustomerSignupDTO {
 	private int statusCode;
 	private String error;
 	private String message;
-	private String token;
-	private String refreshToken;
-	private String expirationTime;
+	
 	
 	private String name;
 	private String email;
