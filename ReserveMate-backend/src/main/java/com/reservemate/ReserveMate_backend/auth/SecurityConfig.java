@@ -33,9 +33,9 @@ public class SecurityConfig {
 	        httpSecurity.csrf(AbstractHttpConfigurer::disable)
 	                .cors(Customizer.withDefaults())
 	                .authorizeHttpRequests(request-> request
-	                	   .requestMatchers("/public/**","/auth/**","/restaurant/**" ).permitAll()
+	                	   .requestMatchers("/public/**","/auth/**","/restaurant/**", "/customer/**" ).permitAll()
 	                       .requestMatchers("/admin/**").hasAuthority("ADMIN")
-	                       .requestMatchers("/user/**").hasAuthority("USER")
+	                       //.requestMatchers("/user/**").hasAuthority("USER")
 	                       //.requestMatchers("/restaurant/**").hasAuthority("RESTAURANT")
 	                        //.requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
 	                        .anyRequest().authenticated())

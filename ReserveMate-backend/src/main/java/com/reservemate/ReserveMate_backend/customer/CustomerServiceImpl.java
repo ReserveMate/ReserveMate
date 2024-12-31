@@ -74,17 +74,17 @@ public class CustomerServiceImpl implements CustomerService{
 	            	
 	            	Customer existingCustomer = customerOptional.get();
 	            	
-	            	existingCustomer.setEmail(updateCustomerProfile.getEmail());
-	            	existingCustomer.setName(updateCustomerProfile.getName());
-	            	existingCustomer.setCity(updateCustomerProfile.getCity());
-	            	existingCustomer.setDistrict(updateCustomerProfile.getDistrict());
-	            	existingCustomer.setMobile(updateCustomerProfile.getMobile());
-	            	existingCustomer.setPicture(updateCustomerProfile.getPicture());
+	            	existingCustomer.setEmail(updatedCustomerProfile.getEmail());
+	            	existingCustomer.setName(updatedCustomerProfile.getName());
+	            	existingCustomer.setCity(updatedCustomerProfile.getCity());
+	            	existingCustomer.setDistrict(updatedCustomerProfile.getDistrict());
+	            	existingCustomer.setMobile(updatedCustomerProfile.getMobile());
+	            	existingCustomer.setPicture(updatedCustomerProfile.getPicture());
 
 	                // Check if password is present in the request
-	                if (updateCustomerProfile.getPassword() != null && !updateCustomerProfile.getPassword().isEmpty()) {
+	                if (updatedCustomerProfile.getPassword() != null && !updatedCustomerProfile.getPassword().isEmpty()) {
 	                    // Encode the password and update it
-	                	existingCustomer.setPassword(passwordEncoder.encode(updateCustomerProfile.getPassword()));
+	                	existingCustomer.setPassword(passwordEncoder.encode(updatedCustomerProfile.getPassword()));
 	                }
 
 	                Customer savedCustomer = customerRepository.save(existingCustomer);
