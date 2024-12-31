@@ -4,12 +4,13 @@ import './App.css';
 import RestaurantRegistration from './Restaurant/RestaurantRegistration'; 
 import CustomerSignup from './Customer/CustomerSignup';
 import Login from './CommonComponents/login';
-import RestaurantProfile from './components/RestaurantProfile'; 
+import RestaurantProfile from './components/RestaurantProfile';
+import RestaurantDetails from './components/RestaurantDetails'; 
 
 function App() {
   return (
     <div className="App">
-      <RestaurantProfile /> {/* Use Register component */}
+      <RestaurantDetails /> {/* Use Register component */}
     </div>
   );
 }
