@@ -1,0 +1,19 @@
+.footer {
+    background-color: #aa0000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .footer-left,
+  .footer-right,
+  .footer-bottom {
+    margin: 0.5rem 0;
+  }
+  
+  .footer-link {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
