@@ -37,6 +37,7 @@ const login = () => {
             <img src={appleIcon} alt="Apple" />
           </button>
         </div>
+        
         <p className="terms">
           By signing in or creating an account, you agree with our{' '}
           <a href="#">Terms & conditions</a> and <a href="#">Privacy statement</a>.
