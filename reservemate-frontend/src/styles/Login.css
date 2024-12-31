@@ -1,0 +1,95 @@
+/* Login.css */
+
+.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width of the viewport */
+    background-color: #f8f9fa; /* Optional: Adjust background color */
+    padding: 20px; /* Optional: Add some padding */
+    box-sizing: border-box;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .sign-in-content {
+    max-width: 400px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .primary-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #d9534f; /* Adjust button color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .primary-btn:hover {
+    background-color: #c9302c;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .social-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .divider hr {
+    flex-grow: 1;
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 0 10px;
+  }
+  
+  .terms {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .terms a {
+    color: #d9534f;
+    text-decoration: none;
+  }
+  
+  .terms a:hover {
+    text-decoration: underline;
+  }
+  

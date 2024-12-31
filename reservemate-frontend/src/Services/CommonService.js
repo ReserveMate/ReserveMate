@@ -29,9 +29,14 @@ class CommonService{
         return role === 'ADMIN'
     }
 
-    static isUser(){
+    static isCustomer(){
         const role = localStorage.getItem('role')
-        return role === 'USER'
+        return role === 'CUSTOMER'
+    }
+
+    static isRestaurant(){
+        const role = localStorage.getItem('role')
+        return role === 'RESTAURANT'
     }
 
     static adminOnly(){

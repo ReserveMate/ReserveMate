@@ -47,7 +47,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 			restaurant.setDistrict(restaurantRegistrationRequest.getDistrict());
 			restaurant.setMobile(restaurantRegistrationRequest.getMobile());
 			restaurant.setPicture(restaurantRegistrationRequest.getPicture());
-			restaurant.setRole("ROLE_RESTAURANT");
+			restaurant.setRole("RESTAURANT");
 			restaurant.setPassword(passwordEncoder.encode(restaurantRegistrationRequest.getPassword()));
 			restaurant.setAddress(restaurantRegistrationRequest.getAddress());
 			restaurant.setMenu(restaurantRegistrationRequest.getMenu());
