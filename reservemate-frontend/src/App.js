@@ -8,8 +8,8 @@ import Home from "./Customer/CustomerHome"
 import RestaurantRegistration from './Restaurant/RestaurantRegistration'; 
 import CustomerSignup from './Customer/CustomerSignup';
 import Login from './CommonComponents/login';
-import RestaurantProfile from './components/RestaurantProfile';
-import RestaurantDetails from './components/RestaurantDetails'; 
+import RestaurantProfile from './Restaurant/RestaurantProfile';
+import RestaurantDetails from './Customer/RestaurantDetails'; 
 import CustomerHome from './Customer/CustomerHome';
 import AdminHome from './Admin/AdminHome';
 
