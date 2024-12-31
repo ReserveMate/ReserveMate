@@ -19,7 +19,7 @@ public class CustomerController {
 	private CustomerServiceImpl customerServiceImpl;
 	
 
-	@PostMapping("/customer/signup")
+	@PostMapping("/public/signup")
 	public ResponseEntity<CustomerSignupDTO> customerSignup(@RequestBody CustomerSignupDTO customersignup) {
 		return ResponseEntity.ok(customerServiceImpl.customerSignup(customersignup));
 	}
