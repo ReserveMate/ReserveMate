@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ee0920, #403636); /* Gradient from red to black */
+  padding: 1.5rem 3rem;
+  color: white;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none; /* Removes underline */
+  color: white; /* Ensures the logo text is white */
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: #e6e6e6; /* Optional hover effect to lighten color */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-btn {
+  margin-left: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: white;
+  color: #bf1e2e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; /* Removes underline for <a> tags */
+  font-size: 1rem;
+  text-align: center;
+}
+
+.header-btn:hover {
+  background-color: #e6e6e6; /* Adds hover effect */
+}
