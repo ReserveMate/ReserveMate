@@ -1,5 +1,3 @@
-/* RestaurantProfile.css */
-
 /* Header and Navigation Styles */
 .header {
     background: linear-gradient(90deg, #800000, #b22222); /* Gradient from red to dark red */
@@ -25,8 +23,8 @@
     font-size: 36px;
     font-weight: bold;
     letter-spacing: 2px;
+    margin-bottom: 10px;
     border-bottom: 0.000001px solid white; /* Small white line separating the logo and the navigation */
-
   }
   
   /* Navigation Styles */
@@ -34,6 +32,99 @@
     display: flex;
     justify-content: center; /* Center the nav links horizontally */
     margin-top: 10px;
+  }
+  /* Modal Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dimmed background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 800px; /* Limit the maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title of the Modal */
+  .modal-content h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form labels */
+  .modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input fields */
+  .modal-content input[type="text"],
+  .modal-content input[type="time"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    min-height: 40px; /* Increase input field height */
+  }
+  
+  /* Button styling */
+  .modal-content button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .modal-content button:hover {
+    background-color: #B22222;
+  }
+  
+  /* Close button */
+  .modal-content button.close {
+    background-color: #aaa;
+    margin-top: 10px;
+  }
+  
+  .modal-content button.close:hover {
+    background-color: #888;
+  }
+  
+ 
+  
+  button.edit-button {
+    padding: 10px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button.edit-button:hover {
+    background-color: #B22222;
   }
   
   .nav ul {
@@ -69,7 +160,7 @@
   .profile-section {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align the content properly */
     margin-top: 120px; /* Push content below the fixed header */
     padding: 20px;
     flex: 1;
@@ -167,5 +258,162 @@
   
   .restaurant-image-container button:hover {
     background-color: #B22222;
+  }
+  
+  /* Additional sections for menu items, facilities, operating hours */
+  .menu-items, .facilities, .operating-hours {
+    margin-top: 30px;
+  }
+  
+  .menu-items h2, .facilities h2, .operating-hours h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .menu-items ul, .facilities ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu-items li, .facilities li {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .operating-hours label {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .operating-hours input {
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button.edit-button {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button.edit-button:hover {
+    background-color: #B22222;
+  }
+  /* Menu Section Styles */
+.menu-items {
+    margin-top: 40px;
+  }
+  
+  .menu-items h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .menu-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Increased gap between images */
+    justify-content: center;
+  }
+  
+  .menu-item {
+    width: 250px; /* Set a fixed width for each menu item */
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px solid #800000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-item img {
+    width: 100%;
+    height: 200px; /* Adjust the height to make images larger */
+    object-fit: cover; /* Ensures the image is cropped if necessary */
+  }
+  
+  input[type="file"] {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  /* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Makes the borders collapse into a single border */
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  /* Table Header Styling */
+  th {
+    background-color: #800000;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Set specific column widths */
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 50px; /* ID column */
+  }
+  
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 150px; /* Reserved Time column */
+  }
+  
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 100px; /* Reserve Hours column */
+  }
+  
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 150px; /* Customer Name column */
+  }
+  
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 150px; /* Customer Mobile column */
+  }
+  
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 100px; /* Table No column */
+  }
+  
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 150px; /* Payment Status column */
+  }
+  
+  th:nth-child(8),
+  td:nth-child(8) {
+    width: 150px; /* Reservation Status column */
+  }
+  
+  /* Action buttons styling */
+  td button {
+    background-color: #B22222;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  td button:hover {
+    background-color: #800000;
   }
   
