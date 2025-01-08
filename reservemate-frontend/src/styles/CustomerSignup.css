@@ -1,171 +1,23 @@
-/* Container */
-.sign-in-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fbfbfb; /* Background for entire page */
-    min-height: 100vh;
-    color: #0e0d0d;
-  }
-  
-  /* Header Section */
-  .header {
-    width: 100%;
-    background: linear-gradient(to right, #ff0000, #400000);
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .header h1 {
-    color: #fff;
-    font-size: 2rem;
-  }
-  
-  .brand-red {
-    color: #ff0000;
-  }
-  
-  /* Main Content Section */
-  .sign-in-content {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-    
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .sign-in-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Form */
-  form {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  form label {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: left;
-  }
-  
-  form input {
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .primary-btn {
-    background: #007bff;
-    color: white;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .primary-btn:hover {
-    background: #0056b3;
-  }
-  
-  /* Divider */
-  .divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
-    gap: 10px;
-  }
-  
-  .divider hr {
-    flex: 1;
-    border: 0;
-    border-top: 1px solid #ccc;
-  }
-  
-  .divider span {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  /* Social Buttons */
-  .social-options {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .social-btn {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-
-  .social-btn img {
-    max-width: 24px;
-    max-height: 24px;
-  }
-  
-  /* Terms & Conditions */
-  .terms {
-    font-size: 0.8rem;
-    color: #666;
-  }
-  
-  .terms a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .terms a:hover {
-    text-decoration: underline;
-  }
-  
-
 .profile-picture-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.5rem 0;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+  text-align: center; 
+  margin-bottom: -20px;
 }
 
 .profile-picture-preview {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ddd;
-  cursor: pointer;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  width: 120px; 
+  height: 120px; 
+  border-radius: 50%; 
+  object-fit: cover; 
 }
 
-.profile-picture-preview:hover {
-  transform: scale(1.05);
+.custom-heading{
+  margin-bottom: 20px;
 }
 
-.logo-image {
-  width: 460px; 
-  height: auto; 
-  max-width: 100%; 
-  display: block; 
+.register-right{
+  margin-top: 100px;
 }

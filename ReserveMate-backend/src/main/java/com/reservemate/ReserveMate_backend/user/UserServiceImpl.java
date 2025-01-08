@@ -63,7 +63,7 @@ public class UserServiceImpl implements  UserService{
                 response.setStatusCode(200);
                 response.setToken(jwt);
                 response.setRefreshToken(refreshTokenReqiest.getToken());
-                response.setExpirationTime("24Hr");
+                //response.setExpirationTime("24Hr");
                 response.setMessage("Successfully Refreshed Token");
             }
             response.setStatusCode(200);

@@ -43,7 +43,11 @@ public class CustomerServiceImpl implements CustomerService{
 			customer.setCity(customerSignupRequest.getCity());
 			customer.setDistrict(customerSignupRequest.getDistrict());
 			customer.setMobile(customerSignupRequest.getMobile());
-			customer.setPicture(customerSignupRequest.getPicture());
+			String profilepircture = customerSignupRequest.getPicture();
+	        if (profilepircture != null && profilepircture.startsWith("data:image")) {
+	        	profilepircture = profilepircture.split(",")[1]; 
+	        }
+	        customer.setPicture(profilepircture);
 			customer.setRole("CUSTOMER");
 			customer.setName(customerSignupRequest.getName());
 			customer.setPassword(passwordEncoder.encode(customerSignupRequest.getPassword()));
