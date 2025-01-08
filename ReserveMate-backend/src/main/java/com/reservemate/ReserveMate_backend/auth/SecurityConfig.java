@@ -33,8 +33,8 @@ public class SecurityConfig {
 	        httpSecurity.csrf(AbstractHttpConfigurer::disable)
 	                .cors(Customizer.withDefaults())
 	                .authorizeHttpRequests(request-> request
-	                	   .requestMatchers("/public/**","/auth/**").permitAll()
-	                       .requestMatchers("/admin/**").hasAuthority("ADMIN")
+	                	   .requestMatchers("/public/**","/auth/**","/admin/**").permitAll()
+	                       //.requestMatchers("/admin/**").hasAuthority("ADMIN")
 	                       .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
 	                       .requestMatchers("/restaurant/**").hasAuthority("RESTAURANT")
 	                       //.requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")

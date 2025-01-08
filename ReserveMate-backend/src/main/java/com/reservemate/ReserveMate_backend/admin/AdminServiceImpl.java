@@ -55,12 +55,15 @@ public class AdminServiceImpl implements AdminService {
 	                reqRes.setStatusCode(404);
 	                reqRes.setMessage("No users found");
 	            }
-	            return reqRes;
-	        } catch (Exception e) {
-	            reqRes.setStatusCode(500);
-	            reqRes.setMessage("Error occurred: " + e.getMessage());
-	            return reqRes;
-	        }
-	    }
+				return reqRes;
+			} catch (Exception e) {
+				reqRes.setStatusCode(500);
+				reqRes.setMessage("Error occurred: " + e.getMessage());
+				return reqRes;
+			}
+		}
+
+		
+
 
 }

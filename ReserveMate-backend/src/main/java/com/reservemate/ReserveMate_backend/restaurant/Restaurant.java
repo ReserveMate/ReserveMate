@@ -8,8 +8,10 @@ import com.reservemate.ReserveMate_backend.reservation.Reservation;
 import com.reservemate.ReserveMate_backend.table.RestaurantTable;
 import com.reservemate.ReserveMate_backend.user.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,6 +28,8 @@ public class Restaurant extends User {
 
 	private String address;
 	
+	@Lob
+	@Column(columnDefinition = "LONGTEXT")
 	private String menu;
 	
 	@OneToMany(mappedBy = "restaurant")
