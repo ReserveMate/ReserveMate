@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,12 +42,11 @@ public class Reservation {
 	 
 	 private String numberofPeople;
 	 
-	 private String status;
+	 @Enumerated(EnumType.STRING)
+	 private ReservationStatus status;
 	 
-	 private String cancelationPolicy;
+	 private String reservingHours;
 	 
-	 private LocalDateTime reserveDateTime;
-
 	 @CreationTimestamp
 	 private LocalDateTime created;
 
