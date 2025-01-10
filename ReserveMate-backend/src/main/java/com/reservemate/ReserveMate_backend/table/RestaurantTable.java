@@ -36,6 +36,7 @@ public class RestaurantTable {
 	private int capacity;
 	private String description;
 	private RestaurantTableStatus status;
+	private String reservationPrice;
 	
 	@Lob
 	@Column(columnDefinition = "LONGTEXT")

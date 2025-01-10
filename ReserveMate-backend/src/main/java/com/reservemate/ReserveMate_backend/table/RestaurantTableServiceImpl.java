@@ -39,6 +39,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	        table.setTableNumber(tableDTO.getTableNumber());
 	        table.setCapacity(tableDTO.getSeatingCapacity());
 	        table.setDescription(tableDTO.getDescription());
+	        table.setReservationPrice(tableDTO.getReservationPrice());
 	        table.setRestaurant(restaurant);
 	        table.setStatus(RestaurantTableStatus.AVAILABLE);
 
@@ -56,6 +57,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	        response.setTableNumber(savedTable.getTableNumber());
 	        response.setSeatingCapacity(savedTable.getCapacity());
 	        response.setDescription(savedTable.getDescription());
+	        response.setReservationPrice(savedTable.getReservationPrice());
 	        response.setRestaurantTablePicture(savedTable.getRestaurantTablePicture());
 	        response.setMessage("Table created successfully");
 	        response.setStatusCode(201);
@@ -85,6 +87,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	        response.setTableNumber(table.getTableNumber());
 	        response.setSeatingCapacity(table.getCapacity());
 	        response.setDescription(table.getDescription());
+	        response.setReservationPrice(table.getReservationPrice());
 	        response.setRestaurantTablePicture(table.getRestaurantTablePicture());
 	        response.setTableStatus(table.getStatus().toString()); 
 	        response.setMessage("Table retrieved successfully");
@@ -115,7 +118,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	        table.setTableNumber(tableDTO.getTableNumber());
 	        table.setCapacity(tableDTO.getSeatingCapacity());
 	        table.setDescription(tableDTO.getDescription());
-
+	        table.setReservationPrice(tableDTO.getReservationPrice());
 	        
 	        String tablePicture = tableDTO.getRestaurantTablePicture();
 	        if (tablePicture != null && tablePicture.startsWith("data:image")) {
@@ -130,6 +133,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	        response.setTableNumber(updatedTable.getTableNumber());
 	        response.setSeatingCapacity(updatedTable.getCapacity());
 	        response.setDescription(updatedTable.getDescription());
+	        response.setReservationPrice(updatedTable.getReservationPrice());
 	        response.setRestaurantTablePicture(updatedTable.getRestaurantTablePicture());
 	        response.setMessage("Table updated successfully");
 	        response.setStatusCode(200);
@@ -191,6 +195,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 	            tableDTO.setTableNumber(table.getTableNumber());
 	            tableDTO.setSeatingCapacity(table.getCapacity());
 	            tableDTO.setDescription(table.getDescription());
+	            tableDTO.setReservationPrice(table.getReservationPrice());
 	            tableDTO.setRestaurantTablePicture(table.getRestaurantTablePicture());
 	            tableDTO.setTableStatus(table.getStatus().toString());
 	            responseList.add(tableDTO);

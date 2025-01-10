@@ -45,7 +45,7 @@ public class Reservation {
 	 @Enumerated(EnumType.STRING)
 	 private ReservationStatus status;
 	 
-	 private String reservingHours;
+	 private int reservingHours;
 	 
 	 @CreationTimestamp
 	 private LocalDateTime created;

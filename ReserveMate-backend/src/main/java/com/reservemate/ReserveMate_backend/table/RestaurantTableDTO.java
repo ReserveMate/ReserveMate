@@ -22,6 +22,7 @@ public class RestaurantTableDTO {
 	private String description;
 	private String restaurantTablePicture;
 	private String tableStatus;
+	private String reservationPrice;
 	    
 
 }

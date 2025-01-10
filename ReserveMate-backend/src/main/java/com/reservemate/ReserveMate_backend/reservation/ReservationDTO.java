@@ -9,6 +9,9 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReservationDTO {
 
+	private int statusCode;
+	private String error;
+	private String message;
 	
 	 private String type;
 	 
@@ -18,5 +21,5 @@ public class ReservationDTO {
 	 
 	 private String status;
 	 
-	 private String reservingHours;
+	 private int reservingHours;
 }
