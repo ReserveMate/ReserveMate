@@ -12,14 +12,13 @@ public class ReservationDTO {
 	private int statusCode;
 	private String error;
 	private String message;
-	
-	 private String type;
-	 
-	 private String specialRequest;
-	 
-	 private String numberofPeople;
-	 
-	 private String status;
-	 
-	 private int reservingHours;
+
+	private String specialRequest;
+
+	private int reservingHours;
+
+	private String customerName;
+	private String customerMobile;
+	private int tableNumber;
+	private String tableStatus;
 }

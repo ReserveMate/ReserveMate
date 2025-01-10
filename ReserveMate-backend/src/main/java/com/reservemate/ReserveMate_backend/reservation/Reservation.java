@@ -35,12 +35,7 @@ public class Reservation {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	 
-	 @Enumerated(EnumType.STRING)
-	 private ReservationType type;
-	 
 	 private String specialRequest;
-	 
-	 private String numberofPeople;
 	 
 	 @Enumerated(EnumType.STRING)
 	 private ReservationStatus status;
