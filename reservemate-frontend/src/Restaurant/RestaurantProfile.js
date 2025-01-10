@@ -1,297 +1,498 @@
 import React, { useState } from 'react';
-import '../styles/RestaurantProfile.css';
-import restaurantImage from '../assets/restaurant-image.jpg'; // Import the image
+import 'bootstrap/dist/css/bootstrap.min.css';
+import defaultRestaurantImage from '../assets/restaurant-image.jpg'; // Import the default image
 
 function RestaurantProfile() {
     const [restaurantName, setRestaurantName] = useState("Bubby's");
     const [restaurantDescription, setRestaurantDescription] = useState(
-      "Bubby’s opened on Thanksgiving Day 1990. Chef / Owner Ron Silver began baking pies and selling them to restaurants and his neighbors out of a small kitchen at the corner of Hudson and North Moore St. in Tribeca. Today, NYC’s beloved restaurant and pie shop celebrates 27 years of classic, made-from-scratch American cooking."
+        "Bubby’s opened on Thanksgiving Day 1990. Chef / Owner Ron Silver began baking pies and selling them to restaurants and his neighbors out of a small kitchen at the corner of Hudson and North Moore St. in Tribeca. Today, NYC’s beloved restaurant and pie shop celebrates 27 years of classic, made-from-scratch American cooking."
     );
-    
-    const [menuItems, setMenuItems] = useState([]); // Store menu items as images
+    const [restaurantImage, setRestaurantImage] = useState(defaultRestaurantImage);
 
+    const [menuItems, setMenuItems] = useState([]);
     const [facilities, setFacilities] = useState(["Wi-Fi", "Parking", "Outdoor Seating"]);
-    const [operatingHours, setOperatingHours] = useState({ open: "10:00 AM", close: "10:00 PM" });
-    const [activeTab, setActiveTab] = useState('profile'); // State to handle the active tab
-    const [reservations, setReservations] = useState([]); // Store reservation details
-    const [showModal, setShowModal] = useState(false); // Control modal visibility
-    const [currentReservation, setCurrentReservation] = useState(null); // Store current reservation for editing
+    const [operatingHours, setOperatingHours] = useState("10:00 AM - 10:00 PM");
+    const [activeTab, setActiveTab] = useState('profile');
+    const [reservations, setReservations] = useState([
+        {
+            id: 1,
+            reservedTime: "2025-01-10 6:00 PM",
+            reserveHours: 2,
+            customerName: "John Doe",
+            customerMobile: "1234567890",
+            tableNo: 1,
+            paymentStatus: "Paid",
+            reservationStatus: "Confirmed"
+        },
+        {
+            id: 2,
+            reservedTime: "2025-01-11 7:00 PM",
+            reserveHours: 3,
+            customerName: "Jane Smith",
+            customerMobile: "9876543210",
+            tableNo: 2,
+            paymentStatus: "Pending",
+            reservationStatus: "Pending"
+        }
+    ]);
+    const [showModal, setShowModal] = useState(false);
+    const [currentReservation, setCurrentReservation] = useState(null);
+    const [tables, setTables] = useState([
+      {
+          id: 1,
+          type: "Standard Table",
+          visitors: 4,
+          cost: 200,
+          description: "Standard table for four.",
+          reserved: false,
+          image: defaultRestaurantImage,
+      },
+    ]);
 
-    // Handle edit actions for name, description, and image
     const handleEdit = (field) => {
-      if (field === 'name') {
-        const newName = prompt("Enter new restaurant name", restaurantName);
-        if (newName) setRestaurantName(newName);
-      }
-      if (field === 'description') {
-        const newDescription = prompt("Enter new description", restaurantDescription);
-        if (newDescription) setRestaurantDescription(newDescription);
-      }
-      if (field === 'image') {
-        const newImage = prompt("Enter new image URL", restaurantImage);
-        if (newImage) restaurantImage(newImage);
-      }
+        if (field === 'name') {
+            const newName = prompt("Enter new restaurant name", restaurantName);
+            if (newName) setRestaurantName(newName);
+        }
+        if (field === 'description') {
+            const newDescription = prompt("Enter new description", restaurantDescription);
+            if (newDescription) setRestaurantDescription(newDescription);
+        }
+        if (field === 'hours') {
+            const newHours = prompt("Enter new operating hours", operatingHours);
+            if (newHours) setOperatingHours(newHours);
+        }
     };
 
-    // Handle adding a new reservation
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setRestaurantImage(imageUrl);
+        }
+    };
+
+    const handleAddFacility = () => {
+        const newFacility = prompt("Enter new facility");
+        if (newFacility && !facilities.includes(newFacility)) {
+            setFacilities([...facilities, newFacility]);
+        }
+    };
+
+    const handleDeleteFacility = (facility) => {
+        setFacilities(facilities.filter(f => f !== facility));
+    };
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
+
+    const handleImageUploadForTable = (index) => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+    
+        fileInput.onchange = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                const updatedTables = [...tables];
+                updatedTables[index] = { ...updatedTables[index], image: imageUrl };
+                setTables(updatedTables);
+            }
+        };
+    
+        fileInput.click();
+    };
+
+    const handleSaveToDatabase = () => {
+        const dataToSave = {
+            restaurantName,
+            restaurantDescription,
+            restaurantImage,
+            menuItems,
+            facilities,
+            operatingHours,
+            reservations,
+            tables
+        };
+
+        console.log("Saving to database:", dataToSave);
+        alert("Data saved successfully!");
+    };
+
     const handleAddReservation = () => {
-        setCurrentReservation({
+        const newReservation = {
             id: reservations.length + 1,
-            reservedTime: '',
-            reserveHours: '',
-            customerName: '',
-            customerMobile: '',
-            tableNo: '',
-            paymentStatus: '',
-            reservationStatus: ''
-        });
+            reservedTime: "",
+            reserveHours: "",
+            customerName: "",
+            customerMobile: "",
+            tableNo: "",
+            paymentStatus: "",
+            reservationStatus: ""
+        };
+        setReservations([...reservations, newReservation]);
+        setCurrentReservation(newReservation);
         setShowModal(true);
     };
 
-    // Handle reservation form changes (add/edit)
-    const handleFormChange = (field, value) => {
-        setCurrentReservation({
-            ...currentReservation,
-            [field]: value
-        });
-    };
+    const handleSaveTablesToDatabase = () => {
+      console.log("Saving tables to database:", tables);
+      alert("Tables saved successfully!");
+  };
 
-    // Handle save for add or edit
+
     const handleSaveReservation = () => {
-        if (currentReservation.id) {
-            setReservations(reservations.map(reservation =>
-                reservation.id === currentReservation.id ? currentReservation : reservation
-            ));
-        } else {
-            setReservations([...reservations, { ...currentReservation, id: reservations.length + 1 }]);
-        }
+        const updatedReservations = reservations.map((res) =>
+            res.id === currentReservation.id ? currentReservation : res
+        );
+        setReservations(updatedReservations);
+        setCurrentReservation(null);
         setShowModal(false);
     };
 
-     // Handle deleting a reservation
-     const handleDeleteReservation = (id) => {
-        setReservations(reservations.filter(res => res.id !== id));
+    const handleDeleteReservation = (id) => {
+        setReservations(reservations.filter(reservation => reservation.id !== id));
     };
 
-    // Handle facilities addition
-    const handleAddFacility = () => {
-      const newFacility = prompt("Enter new facility");
-      if (newFacility && !facilities.includes(newFacility)) {
-        setFacilities([...facilities, newFacility]);
-      }
+    const handleAddTable = () => {
+        const newTable = {
+            id: tables.length + 1,
+            type: "Table",
+            visitors: 0,
+            cost: 0,
+            description: "",
+            reserved: false,
+            image: defaultRestaurantImage,
+        };
+        setTables([...tables, newTable]);
     };
 
-    // Handle operating hours update
-    const handleOperatingHoursChange = (time, value) => {
-      setOperatingHours({ ...operatingHours, [time]: value });
-    };
-
-    // Switch between tabs
-    const handleTabChange = (tab) => {
-      setActiveTab(tab);
-    };
-
-     // Handle image upload for menu items
-     const handleMenuItemUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const imageUrl = URL.createObjectURL(file);
-          setMenuItems([...menuItems, imageUrl]); // Add the new image to the menuItems array
+    const handleEditTable = (id) => {
+        const table = tables.find(t => t.id === id);
+        if (table) {
+            const updatedTable = {
+                ...table,
+                type: prompt("Enter table type", table.type) || table.type,
+                visitors: parseInt(prompt("Enter number of visitors", table.visitors), 10) || table.visitors,
+                cost: parseInt(prompt("Enter reservation cost", table.cost), 10) || table.cost,
+                description: prompt("Enter description", table.description) || table.description,
+            };
+            setTables(tables.map(t => (t.id === id ? updatedTable : t)));
         }
-      };
-  
+    };
+
+    const handleDeleteTable = (id) => {
+        setTables(tables.filter(t => t.id !== id));
+    };
+
+    const toggleTableAvailability = (id) => {
+        setTables(tables.map(t => (t.id === id ? { ...t, reserved: !t.reserved } : t)));
+    };
 
     return (
-      <div className="restaurant-profile">
-        {/* Header Section */}
-        <header className="header">
-          <div className="logo">ReserveMate</div>
-          <div className="nav">
-            <ul>
-              <li className={activeTab === 'profile' ? 'active' : ''} onClick={() => handleTabChange('profile')}>Profile</li>
-              <li className={activeTab === 'reservation' ? 'active' : ''} onClick={() => handleTabChange('reservation')}>Reservation</li>
-              <li className={activeTab === 'analytics' ? 'active' : ''} onClick={() => handleTabChange('analytics')}>Analytics</li>
-              <li className={activeTab === 'payments' ? 'active' : ''} onClick={() => handleTabChange('payments')}>Payments</li>
-              <li className={activeTab === 'ads' ? 'active' : ''} onClick={() => handleTabChange('ads')}>Ads</li>
-            </ul>
-          </div>
-        </header>
-
-        {/* Profile Section for Restaurant Profile */}
-        <div className="profile-section">
-          {activeTab === 'profile' && (
-            <div className="restaurant-container">
-              <div className="left-container">
-                {/* Restaurant Name */}
-                <div className="restaurant-name">
-                  <h1>{restaurantName}</h1>
-                  <button className="edit-button" onClick={() => handleEdit('name')}>Edit</button>
-                </div>
-
-                {/* Restaurant Description */}
-                <div className="restaurant-description">
-                  <h2>Restaurant Description</h2>
-                  <p>{restaurantDescription}</p>
-                  <button className="edit-button" onClick={() => handleEdit('description')}>Edit</button>
-                </div>
-
-                {/* Menu Section for Menu Item Upload */}
-                <div className="menu-items">
-                  <h2>Menu Items</h2>
-                  <div className="menu-images">
-                    {menuItems.map((image, index) => (
-                      <div key={index} className="menu-item">
-                        <img src={image} alt={`Menu Item ${index + 1}`} />
-                      </div>
-                    ))}
-                  </div>
-                  <input type="file" accept="image/*" onChange={handleMenuItemUpload} />
-                  <button className="edit-button">Upload Menu Item Image</button>
-                </div>
-
-                {/* Facilities */}
-                <div className="facilities">
-                  <h2>Facilities</h2>
-                  <ul>
-                    {facilities.map((facility, index) => (
-                      <li key={index}>{facility}</li>
-                    ))}
-                  </ul>
-                  <button className="edit-button" onClick={handleAddFacility}>Add Facility</button>
-                </div>
-
-                {/* Operating Hours */}
-                <div className="operating-hours">
-                  <h2>Operating Hours</h2>
-                  <div>
-                    <label>Open: </label>
-                    <input
-                      type="time"
-                      value={operatingHours.open}
-                      onChange={(e) => handleOperatingHoursChange('open', e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label>Close: </label>
-                    <input
-                      type="time"
-                      value={operatingHours.close}
-                      onChange={(e) => handleOperatingHoursChange('close', e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Container for Image */}
-              <div className="right-container">
-                <div className="restaurant-image-container">
-                  <img src={restaurantImage} alt="Restaurant" className="restaurant-image" />
-                  <button className="edit-button" onClick={() => handleEdit('image')}>Edit</button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Other sections like reservation, facilities, reviews... */}
-        {/* Reservation Tab */}
-        {activeTab === 'reservation' && (
-                    <div className="reservation-section">
-                        <h2>Reservations</h2>
-                        <button onClick={handleAddReservation} className="edit-button">Add Reservation</button>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Reserved Time</th>
-                                    <th>Reserve Hours</th>
-                                    <th>Customer Name</th>
-                                    <th>Customer Mobile</th>
-                                    <th>Table No</th>
-                                    <th>Payment Status</th>
-                                    <th>Reservation Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {reservations.map(reservation => (
-                                    <tr key={reservation.id}>
-                                        <td>{reservation.id}</td>
-                                        <td>{reservation.reservedTime}</td>
-                                        <td>{reservation.reserveHours}</td>
-                                        <td>{reservation.customerName}</td>
-                                        <td>{reservation.customerMobile}</td>
-                                        <td>{reservation.tableNo}</td>
-                                        <td>{reservation.paymentStatus}</td>
-                                        <td>{reservation.reservationStatus}</td>
-                                        <td>
-                                            <button onClick={() => {
-                                                setCurrentReservation(reservation);
-                                                setShowModal(true);
-                                            }}>Edit</button>
-                                            <button onClick={() => handleDeleteReservation(reservation.id)}>Delete</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+        <div className="container-fluid">
+            {/* Header Section */}
+            <nav className="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+                <div className="container">
+                    <a className="navbar-brand" href="#">ReserveMate</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <button className="btn btn-outline-light" onClick={() => alert('Logged out!')}>Log Out</button>
+                            </li>
+                        </ul>
                     </div>
-                )}
+                </div>
+            </nav>
 
-                {/* Modal for Add/Edit Reservation */}
-                {showModal && (
-                    <div className="modal">
+            <div className="mt-5 pt-5">
+                <ul className="nav nav-tabs nav-justified" style={{ fontSize: '20px', backgroundColor: '#dc3545' }}>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'profile' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('profile')} style={{ color: activeTab === 'profile' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'profile' ? '#bd2130' : '' }}>Profile</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'reservation' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('reservation')} style={{ color: activeTab === 'reservation' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'reservation' ? '#bd2130' : '' }}>Reservations</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'tables' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('tables')} style={{ color: activeTab === 'tables' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'tables' ? '#bd2130' : '' }}>Tables</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'payments' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('payments')} style={{ color: activeTab === 'payments' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'payments' ? '#bd2130' : '' }}>Payments</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'ads' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('ads')} style={{ color: activeTab === 'ads' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'ads' ? '#bd2130' : '' }}>Ads</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`nav-link ${activeTab === 'analytics' ? 'active' : ''}`} href="#" onClick={() => handleTabChange('analytics')} style={{ color: activeTab === 'analytics' ? 'white' : '#f8f9fa', backgroundColor: activeTab === 'analytics' ? '#bd2130' : '' }}>Analytics</a>
+                    </li>
+                </ul>
+
+                <div className="tab-content mt-4">
+                    {activeTab === 'profile' && (
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h1>{restaurantName}</h1>
+                                <p>{restaurantDescription}</p>
+                                <button className="btn btn-danger" onClick={() => handleEdit('name')}>Edit Name</button>
+                                <button className="btn btn-danger ms-2" onClick={() => handleEdit('description')}>Edit Description</button>
+
+                                <div className="mt-4">
+                                    <h5>Operating Hours</h5>
+                                    <p>{operatingHours}</p>
+                                    <button className="btn btn-danger" onClick={() => handleEdit('hours')}>Edit Operating Hours</button>
+                                </div>
+
+                                <div className="mt-4">
+                                    <h5>Facilities</h5>
+                                    <ul className="list-group">
+                                        {facilities.map((facility, index) => (
+                                            <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                                                <span>{facility}</span>
+                                                <button className="btn btn-sm btn-danger" onClick={() => handleDeleteFacility(facility)}>X</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button className="btn btn-danger mt-3" onClick={handleAddFacility}>Add Facility</button>
+                                </div>
+
+                                <div className="mt-4">
+                                    <button className="btn btn-success" onClick={handleSaveToDatabase}>Save All Changes</button>
+                                </div>
+                            </div>
+
+                            <div className="col-md-6 text-center">
+                                <img src={restaurantImage} alt="Restaurant" className="img-fluid rounded mb-3" style={{ height: '100%', maxHeight: '500px', objectFit: 'cover', width: '100%' }} />
+                                <button className="btn btn-danger" onClick={() => document.getElementById('imageUpload').click()}>Change Image</button>
+                                <input
+                                    type="file"
+                                    id="imageUpload"
+                                    accept="image/*"
+                                    onChange={handleImageUpload}
+                                    className="d-none"
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'reservation' && (
+                        <div>
+                            <h2>Reservations</h2>
+                            <button className="btn btn-danger mb-3" onClick={handleAddReservation}>Add Reservation</button>
+                            <table className="table table-hover">
+                                <thead className="table-danger">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Reserved Time</th>
+                                        <th>Reserve Hours</th>
+                                        <th>Customer Name</th>
+                                        <th>Customer Mobile</th>
+                                        <th>Table No</th>
+                                        <th>Payment Status</th>
+                                        <th>Reservation Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {reservations.map(reservation => (
+                                        <tr key={reservation.id}>
+                                            <td>{reservation.id}</td>
+                                            <td>{reservation.reservedTime}</td>
+                                            <td>{reservation.reserveHours}</td>
+                                            <td>{reservation.customerName}</td>
+                                            <td>{reservation.customerMobile}</td>
+                                            <td>{reservation.tableNo}</td>
+                                            <td>{reservation.paymentStatus}</td>
+                                            <td>{reservation.reservationStatus}</td>
+                                            <td>
+                                                <button className="btn btn-sm btn-primary me-2" onClick={() => { setCurrentReservation(reservation); setShowModal(true); }}>Edit</button>
+                                                <button className="btn btn-sm btn-danger" onClick={() => handleDeleteReservation(reservation.id)}>Delete</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+
+                    {activeTab === 'tables' && (
+                         <div>
+                         <h2>Tables</h2>
+                         <button className="btn btn-success mb-3" onClick={handleAddTable}>Add New Table</button>
+                         <div className="row">
+                             {tables.map((table, index) => (
+                                 <div key={index} className="col-md-3"> {/* Made table smaller by changing column size */}
+                                     <div className="card mb-3">
+                                         <img src={table.image || defaultRestaurantImage} className="card-img-top" alt="Table" />
+                                         <div className="card-body">
+                                             <h5 className="card-title">Type: {table.type}</h5>
+                                             <p className="card-text">ID: {table.id}</p>
+                                             <p className="card-text">Visitors: {table.visitors}</p>
+                                             <p className="card-text">Cost: {table.cost}</p>
+                                             <p className="card-text">Description: {table.description}</p>
+                                             <p className="card-text">Status: {table.reserved ? 'Reserved' : 'Available'}</p>
+                                             <button className="btn btn-sm btn-danger me-2" onClick={() => handleEditTable(table.id)}>Edit</button>
+                                             <button className="btn btn-sm btn-danger me-2" onClick={() => handleDeleteTable(table.id)}>Delete</button>
+                                             <button className="btn btn-sm btn-danger me-2" onClick={() => toggleTableAvailability(table.id)}>
+                                                 {table.reserved ? 'Mark as Available' : 'Mark as Reserved'}
+                                             </button>
+                                             <button className="btn btn-sm btn-danger" onClick={() => handleImageUploadForTable(index)}>Change Image</button>
+                                             <p></p>
+                                             <button className="btn btn-sm btn-success" onClick={handleSaveTablesToDatabase}>Save Table</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             ))}
+                         </div>
+                     </div>
+                 )}
+
+                </div>
+            </div>
+
+
+            {showModal && (
+                <div className="modal fade show d-block" tabIndex="-1">
+                    <div className="modal-dialog">
                         <div className="modal-content">
-                            <h3>{currentReservation?.id ? 'Edit Reservation' : 'Add Reservation'}</h3>
-                            <label>Reserved Time:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.reservedTime}
-                                onChange={(e) => handleFormChange('reservedTime', e.target.value)}
-                            />
-                            <label>Reserve Hours:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.reserveHours}
-                                onChange={(e) => handleFormChange('reserveHours', e.target.value)}
-                            />
-                            <label>Customer Name:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.customerName}
-                                onChange={(e) => handleFormChange('customerName', e.target.value)}
-                            />
-                            <label>Customer Mobile:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.customerMobile}
-                                onChange={(e) => handleFormChange('customerMobile', e.target.value)}
-                            />
-                            <label>Table No:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.tableNo}
-                                onChange={(e) => handleFormChange('tableNo', e.target.value)}
-                            />
-                            <label>Payment Status:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.paymentStatus}
-                                onChange={(e) => handleFormChange('paymentStatus', e.target.value)}
-                            />
-                            <label>Reservation Status:</label>
-                            <input
-                                type="text"
-                                value={currentReservation?.reservationStatus}
-                                onChange={(e) => handleFormChange('reservationStatus', e.target.value)}
-                            />
-                            <button onClick={handleSaveReservation}>
-                                {currentReservation?.id ? 'Save Changes' : 'Add Reservation'}
-                            </button>
-                            <button onClick={() => setShowModal(false)}>Close</button>
+                            <div className="modal-header">
+                                <h5 className="modal-title">{currentReservation?.id ? 'Edit Reservation' : 'Add Reservation'}</h5>
+                                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="mb-3">
+                                        <label htmlFor="reservedTime" className="form-label">Reserved Time</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="reservedTime"
+                                            value={currentReservation?.reservedTime || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    reservedTime: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="reserveHours" className="form-label">Reserve Hours</label>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="reserveHours"
+                                            value={currentReservation?.reserveHours || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    reserveHours: parseInt(e.target.value, 10),
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="customerName" className="form-label">Customer Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="customerName"
+                                            value={currentReservation?.customerName || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    customerName: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="customerMobile" className="form-label">Customer Mobile</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="customerMobile"
+                                            value={currentReservation?.customerMobile || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    customerMobile: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="tableNo" className="form-label">Table No</label>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="tableNo"
+                                            value={currentReservation?.tableNo || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    tableNo: parseInt(e.target.value, 10),
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="paymentStatus" className="form-label">Payment Status</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="paymentStatus"
+                                            value={currentReservation?.paymentStatus || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    paymentStatus: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="reservationStatus" className="form-label">Reservation Status</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="reservationStatus"
+                                            value={currentReservation?.reservationStatus || ''}
+                                            onChange={(e) =>
+                                                setCurrentReservation({
+                                                    ...currentReservation,
+                                                    reservationStatus: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Close</button>
+                                <button
+                                    type="button"
+                                    className="btn btn-danger"
+                                    onClick={() => {
+                                        const updatedReservations = reservations.map((res) =>
+                                            res.id === currentReservation.id ? currentReservation : res
+                                        );
+                                        setReservations(updatedReservations);
+                                        setCurrentReservation(null);
+                                        setShowModal(false);
+                                    }}
+                                >
+                                    Save Changes
+                                </button>
+                            </div>
                         </div>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 }
