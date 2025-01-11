@@ -6,6 +6,7 @@ import placeholderIcon from '../assets/placeholder-icon.png';
 
 
 function RestauranRegistration() {
+  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ function RestauranRegistration() {
   return (
     <div className="d-flex">
 
-      <div className="header">
+      <div className="header d-flex justify-content-center align-items-center">
         <h1>
           <span style={{ color: 'black' }}>Reserve</span>
           <span className="brand-red">Mate</span>
