@@ -35,12 +35,23 @@ public class JWTAuthFilter  extends OncePerRequestFilter  {
         final String jwtToken;
         final String userEmail;
 
-        if (authHeader == null || authHeader.isBlank()) {
+		
+		 if (authHeader == null || authHeader.isBlank()) {
+		 filterChain.doFilter(request, response); return; }
+		 
+        
+        /*if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }*/
+        
+        jwtToken = authHeader.substring(7);
+        
+        if (jwtToken.isBlank()) {
             filterChain.doFilter(request, response);
             return;
         }
-
-        jwtToken = authHeader.substring(7);
+        
         userEmail = jwtUtils.extractUsername(jwtToken);
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {

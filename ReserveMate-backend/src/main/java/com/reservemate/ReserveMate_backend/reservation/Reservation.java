@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,19 +35,13 @@ public class Reservation {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	 
-	 @Enumerated(EnumType.STRING)
-	 private ReservationType type;
-	 
 	 private String specialRequest;
 	 
-	 private String numberofPeople;
+	 @Enumerated(EnumType.STRING)
+	 private ReservationStatus status;
 	 
-	 private String status;
+	 private int reservingHours;
 	 
-	 private String cancelationPolicy;
-	 
-	 private LocalDateTime reserveDateTime;
-
 	 @CreationTimestamp
 	 private LocalDateTime created;
 

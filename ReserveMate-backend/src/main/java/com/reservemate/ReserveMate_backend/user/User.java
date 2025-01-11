@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 
 import jakarta.persistence.Entity;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
@@ -49,6 +51,8 @@ public class User implements UserDetails{
 
 	private String mobile;
 	
+	@Lob
+	@Column(columnDefinition = "LONGTEXT")
 	private String picture;
 	
 	private String role;

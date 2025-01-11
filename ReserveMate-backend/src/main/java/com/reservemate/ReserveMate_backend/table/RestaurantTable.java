@@ -7,16 +7,20 @@ import java.util.List;
 
 import com.reservemate.ReserveMate_backend.reservation.Reservation;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Entity
 @Getter
@@ -31,7 +35,11 @@ public class RestaurantTable {
 	private int tableNumber;
 	private int capacity;
 	private String description;
-	private String status;
+	private RestaurantTableStatus status;
+	private String reservationPrice;
+	
+	@Lob
+	@Column(columnDefinition = "LONGTEXT")
 	private String restaurantTablePicture;
 
 	@ManyToOne

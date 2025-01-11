@@ -38,19 +38,32 @@ public class RestaurantServiceImpl implements RestaurantService{
 
 
 		try {
+			
 			Restaurant restaurant = new Restaurant();
-			restaurant.setName(restaurantRegistration.getName());
-			restaurant.setEmail(restaurantRegistration.getEmail());
-			restaurant.setCity(restaurantRegistration.getCity());
-			restaurant.setDistrict(restaurantRegistration.getDistrict());
-			restaurant.setMobile(restaurantRegistration.getMobile());
-			restaurant.setPicture(restaurantRegistration.getPicture());
+			
+			restaurant.setName(restaurantRegistrationRequest.getName());
+			restaurant.setEmail(restaurantRegistrationRequest.getEmail());
+			restaurant.setCity(restaurantRegistrationRequest.getCity());
+			restaurant.setDistrict(restaurantRegistrationRequest.getDistrict());
+			restaurant.setMobile(restaurantRegistrationRequest.getMobile());
+			String profilepircture = restaurantRegistrationRequest.getPicture();
+	        if (profilepircture != null && profilepircture.startsWith("data:image")) {
+	        	profilepircture = profilepircture.split(",")[1]; 
+	        }
+	        restaurant.setPicture(profilepircture);
+	        
+	       
+	        
 			restaurant.setRole("RESTAURANT");
-			restaurant.setPassword(passwordEncoder.encode(restaurantRegistration.getPassword()));
-			restaurant.setAddress(restaurantRegistration.getAddress());
-			restaurant.setMenu(restaurantRegistration.getMenu());
-			restaurant.setDescription(restaurantRegistration.getDescription());
-			restaurant.setOperationHours(restaurantRegistration.getOperationHours());
+			restaurant.setPassword(passwordEncoder.encode(restaurantRegistrationRequest.getPassword()));
+			restaurant.setAddress(restaurantRegistrationRequest.getAddress());
+			String menu = restaurantRegistrationRequest.getMenu();
+		        if (menu != null && menu.startsWith("data:image")) {
+		        	menu = menu.split(",")[1]; 
+		        }
+		        restaurant.setMenu(menu);
+			restaurant.setDescription(restaurantRegistrationRequest.getDescription());
+			restaurant.setOperationHours(restaurantRegistrationRequest.getOperationHours());
 
 			User usersResult = userRepository.save(restaurant);
 			
@@ -77,23 +90,23 @@ public class RestaurantServiceImpl implements RestaurantService{
 	            	
 	            	Restaurant existingRestaurant = restaurantOptional.get();
 	            	
-	            	existingRestaurant.setEmail(updateRestaurantProfile.getEmail());
-	            	existingRestaurant.setName(updateRestaurantProfile.getName());
-	            	existingRestaurant.setCity(updateRestaurantProfile.getCity());
-	            	existingRestaurant.setDistrict(updateRestaurantProfile.getDistrict());
-	            	existingRestaurant.setMobile(updateRestaurantProfile.getMobile());
-	            	existingRestaurant.setPicture(updateRestaurantProfile.getPicture());
-	            	existingRestaurant.setAddress(updateRestaurantProfile.getAddress());
-	            	existingRestaurant.setDescription(updateRestaurantProfile.getDescription());
-	            	existingRestaurant.setMenu(updateRestaurantProfile.getMenu());
-	            	existingRestaurant.setOperationHours(updateRestaurantProfile.getOperationHours());
+	            	existingRestaurant.setEmail(updatedRestaurantProfile.getEmail());
+	            	existingRestaurant.setName(updatedRestaurantProfile.getName());
+	            	existingRestaurant.setCity(updatedRestaurantProfile.getCity());
+	            	existingRestaurant.setDistrict(updatedRestaurantProfile.getDistrict());
+	            	existingRestaurant.setMobile(updatedRestaurantProfile.getMobile());
+	            	existingRestaurant.setPicture(updatedRestaurantProfile.getPicture());
+	            	existingRestaurant.setAddress(updatedRestaurantProfile.getAddress());
+	            	existingRestaurant.setDescription(updatedRestaurantProfile.getDescription());
+	            	existingRestaurant.setMenu(updatedRestaurantProfile.getMenu());
+	            	existingRestaurant.setOperationHours(updatedRestaurantProfile.getOperationHours());
 
 
 	            	
 	                // Check if password is present in the request
-	                if (updateRestaurantProfile.getPassword() != null && !updateRestaurantProfile.getPassword().isEmpty()) {
+	                if (updatedRestaurantProfile.getPassword() != null && !updatedRestaurantProfile.getPassword().isEmpty()) {
 	                    // Encode the password and update it
-	                	existingRestaurant.setPassword(passwordEncoder.encode(updateRestaurantProfile.getPassword()));
+	                	existingRestaurant.setPassword(passwordEncoder.encode(updatedRestaurantProfile.getPassword()));
 	                }
 
 	                Restaurant savedRestaurant = restaurantRepository.save(existingRestaurant);

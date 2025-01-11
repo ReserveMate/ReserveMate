@@ -21,7 +21,7 @@ public class RestaurantController {
 	private RestaurantServiceImpl restaurantServiceImpl;
 	
 
-	@PostMapping("/restaurant/register")
+	@PostMapping("/public/register")
 	public ResponseEntity<RestaurantRegistrationDTO> restaurantRegeister(@RequestBody RestaurantRegistrationDTO restaurantreg) {
 		return ResponseEntity.ok(restaurantServiceImpl.registerRestaurant(restaurantreg));
 	}
