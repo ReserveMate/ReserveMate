@@ -46,14 +46,15 @@ function Login() {
   return (
     <div className="container vh-100 d-flex flex-column justify-content-center align-items-center">
       {/* Header */}
-      <div className="mb-4 text-center">
-        <h1>
+      <div className="bg-danger text-center py-3 fixed-top">
+        <h1 className="m-0">
           <Link to="/customer-home" style={{ textDecoration: 'none', color: 'inherit' }}>
             <span style={{ color: 'black' }}>Reserve</span>
-            <span className="text-danger">Mate</span>
+            <span className="text-white">Mate</span>
           </Link>
         </h1>
       </div>
+
 
       {/* Login Card */}
       <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>

@@ -1,5 +1,7 @@
 package com.reservemate.ReserveMate_backend.restaurant;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -38,5 +40,32 @@ public class RestaurantController {
 		RestaurantRegistrationDTO response = restaurantServiceImpl.getRestaurantInfo(email);
 		return ResponseEntity.status(response.getStatusCode()).body(response);
 	}
+	
+	@GetMapping("/public/all")
+    public ResponseEntity<List<RestaurantRegistrationDTO>> getAllRestaurants() {
+        List<RestaurantRegistrationDTO> response = restaurantServiceImpl.getAllRestaurants();
+        if (response.isEmpty() || response.get(0).getStatusCode() == 404) {
+            return ResponseEntity.status(404).body(null);
+        }
+        return ResponseEntity.ok(response);
+    }
+	
+	/*
+	@GetMapping("/restaurant/{id}")
+    public ResponseEntity<List<RestaurantRegistrationDTO>> getRestaurantsById(@PathVariable Long id) {
+        List<RestaurantRegistrationDTO> restaurants = restaurantServiceImpl.getAllRestaurantsById(id);
+        
+        if (restaurants.isEmpty()) {
+            return ResponseEntity.status(404).body(null);
+        }
+        
+        return ResponseEntity.ok(restaurants);
+    }
+	
+	@GetMapping("/get-all-restaurants")
+	public ResponseEntity<RestaurantRegistrationDTO> getAllRestaurants() {
+		return ResponseEntity.ok(RestaurantServiceImpl.getAllRestaurants());
+
+	}*/
 
 }

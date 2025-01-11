@@ -1,5 +1,6 @@
 package com.reservemate.ReserveMate_backend.restaurant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -147,15 +148,94 @@ public class RestaurantServiceImpl implements RestaurantService{
 	        return viewRestaurantProfile;
 
 	    }
+	    
+	    @Override
+	    public List<RestaurantRegistrationDTO> getAllRestaurants() {
+	        List<RestaurantRegistrationDTO> restaurantDTOList = new ArrayList<>();
+	        try {
+	            List<Restaurant> restaurants = restaurantRepository.findAll();
+	            for (Restaurant restaurant : restaurants) {
+	                RestaurantRegistrationDTO dto = new RestaurantRegistrationDTO();
+	                dto.setUser(restaurant);
+	                dto.setStatusCode(200);
+	                dto.setMessage("Restaurants fetched successfully");
+	                restaurantDTOList.add(dto);
+	            }
+	        } catch (Exception e) {
+	            RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+	            errorResponse.setStatusCode(500);
+	            errorResponse.setError("Error occurred while fetching restaurants: " + e.getMessage());
+	            restaurantDTOList.add(errorResponse);
+	        }
+	        return restaurantDTOList;
+	    }
+	    /*
+	    
+	    @Override
+	    public List<RestaurantRegistrationDTO> getAllRestaurantsById(Long id) {
+	        List<RestaurantRegistrationDTO> responseList = new ArrayList<>();
+
+	        try {
+	            Optional<Restaurant> restaurantOptional = restaurantRepository.findRestaurantById(id);
+	            
+	            if (restaurantOptional.isPresent()) {
+	                Restaurant restaurant = restaurantOptional.get();
+	                RestaurantRegistrationDTO restaurantDTO = new RestaurantRegistrationDTO();
+	                restaurantDTO.setUser(restaurant);
+	                restaurantDTO.setStatusCode(200);
+	                restaurantDTO.setMessage("Restaurants retrieved successfully");
+	                responseList.add(restaurantDTO);
+	            } else {
+	                RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+	                errorResponse.setStatusCode(404);
+	                errorResponse.setMessage("Restaurant not found for the given ID");
+	                responseList.add(errorResponse);
+	            }
+	        } catch (Exception e) {
+	            RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+	            errorResponse.setStatusCode(500);
+	            errorResponse.setMessage("Error occurred while retrieving restaurants: " + e.getMessage());
+	            responseList.add(errorResponse);
+	        }
+
+	        return responseList;
+	    }
+	    */
+	    
+	    /*
+	    @Override
+		 public RestaurantRegistrationDTO getAllRestaurants() {
+			 RestaurantRegistrationDTO reqRes = new RestaurantRegistrationDTO();
+
+		        try {
+		            List<Restaurant> result = restaurantRepository.findAll();
+		            if (!result.isEmpty()) {
+		                //reqRes.setUserList(result);
+		                reqRes.setStatusCode(200);
+		                reqRes.setMessage("Successful");
+		            } else {
+		                reqRes.setStatusCode(404);
+		                reqRes.setMessage("No users found");
+		            }
+		            return reqRes;
+		        } catch (Exception e) {
+		            reqRes.setStatusCode(500);
+		            reqRes.setMessage("Error occurred: " + e.getMessage());
+		            return reqRes;
+		        }
+		    }
+	    
+	    
 	
 	@Override
 	public List<Restaurant> getAllRestaurant() {
 		return restaurantRepository.findAll();
-	}
+	}*/
 	
-	@Override
-	public Restaurant findById(long id) {
-		return restaurantRepository.findById(id);
-	}
+	    @Override
+		public Restaurant findById(long id) {
+			return restaurantRepository.findById(id);
+		}
+	
 
 }

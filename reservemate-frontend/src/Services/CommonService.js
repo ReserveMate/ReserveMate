@@ -43,6 +43,26 @@ class CommonService{
         return this.isAuthenticated() && this.isAdmin();
     }
 
+    static async getToken() {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('Token not found in local storage');
+            return token;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    static async getAllRestaurants() {
+        try {
+          const response = await axios.get(`${CommonService.BASE_URL}/public/all`);
+          console.log("Fetched restaurants data:", response.data); 
+          return response.data;
+        } catch (err) {
+          console.error("Error fetching restaurants:", err); 
+          throw err;
+        }
+      }
 }
 
 export default CommonService;

@@ -21,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	CustomerRepository customerRepository;
 	
+	@Override
 	 public RestaurantRegistrationDTO getAllRestaurants() {
 		 RestaurantRegistrationDTO reqRes = new RestaurantRegistrationDTO();
 
@@ -42,6 +43,7 @@ public class AdminServiceImpl implements AdminService {
 	        }
 	    }
 	 
+	@Override
 	 public CustomerSignupDTO getAllCustomers() {
 		 CustomerSignupDTO reqRes = new CustomerSignupDTO();
 
