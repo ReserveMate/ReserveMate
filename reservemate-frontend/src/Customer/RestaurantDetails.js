@@ -3,16 +3,6 @@ import React from "react";
 const RestaurantDetails = () => {
   return (
     <div className="container my-4">
-      {/* Header */}
-      <header className="text-center mb-5">
-        <h1 className="fw-bold">ReserveMate</h1>
-        <nav className="d-flex justify-content-center gap-3 mt-3">
-          <a href="/" className="text-decoration-none text-dark">Home</a>
-          <a href="/about" className="text-decoration-none text-dark">About</a>
-          <a href="/contact" className="text-decoration-none text-dark">Contact</a>
-          <button className="btn btn-outline-dark">Login</button>
-        </nav>
-      </header>
 
       {/* Restaurant Details */}
       <section className="mb-5">

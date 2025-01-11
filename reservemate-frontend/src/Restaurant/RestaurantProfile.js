@@ -276,26 +276,6 @@ const RestaurantProfile = ({ token }) => {
 
     return (
         <div className="container-fluid">
-            {/* Header Section */}
-            <nav className="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
-                <div className="container d-flex justify-content-between align-items-center">
-
-                    <div className="d-flex flex-grow-1 justify-content-center">
-                        <h1 className="text-center mb-0">
-                            <span style={{ color: 'black' }}>Reserve</span>
-                            <span style={{ color: 'white' }}>Mate</span>
-                        </h1>
-                    </div>
-
-                    <div className="d-flex justify-content-end">
-                        <button className="btn btn-outline-light ms-auto" onClick={() => alert('Logged out!')}>
-                            Log Out
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
-
 
             <div className="mt-5 pt-5">
                 <ul className="nav nav-tabs nav-justified" style={{ fontSize: '20px', backgroundColor: '#dc3545' }}>

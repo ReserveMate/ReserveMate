@@ -149,14 +149,34 @@ public class RestaurantServiceImpl implements RestaurantService{
 
 	    }
 	    
-	    
+	    @Override
+	    public List<RestaurantRegistrationDTO> getAllRestaurants() {
+	        List<RestaurantRegistrationDTO> restaurantDTOList = new ArrayList<>();
+	        try {
+	            List<Restaurant> restaurants = restaurantRepository.findAll();
+	            for (Restaurant restaurant : restaurants) {
+	                RestaurantRegistrationDTO dto = new RestaurantRegistrationDTO();
+	                dto.setUser(restaurant);
+	                dto.setStatusCode(200);
+	                dto.setMessage("Restaurants fetched successfully");
+	                restaurantDTOList.add(dto);
+	            }
+	        } catch (Exception e) {
+	            RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+	            errorResponse.setStatusCode(500);
+	            errorResponse.setError("Error occurred while fetching restaurants: " + e.getMessage());
+	            restaurantDTOList.add(errorResponse);
+	        }
+	        return restaurantDTOList;
+	    }
 	    /*
+	    
 	    @Override
 	    public List<RestaurantRegistrationDTO> getAllRestaurantsById(Long id) {
 	        List<RestaurantRegistrationDTO> responseList = new ArrayList<>();
 
 	        try {
-	            Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
+	            Optional<Restaurant> restaurantOptional = restaurantRepository.findRestaurantById(id);
 	            
 	            if (restaurantOptional.isPresent()) {
 	                Restaurant restaurant = restaurantOptional.get();
@@ -179,9 +199,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	        }
 
 	        return responseList;
-	    }*/
+	    }
+	    */
 	    
-	    /*@Override
+	    /*
+	    @Override
 		 public RestaurantRegistrationDTO getAllRestaurants() {
 			 RestaurantRegistrationDTO reqRes = new RestaurantRegistrationDTO();
 
@@ -201,11 +223,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 		            reqRes.setMessage("Error occurred: " + e.getMessage());
 		            return reqRes;
 		        }
-		    }*/
+		    }
 	    
 	    
 	
-	/*@Override
+	@Override
 	public List<Restaurant> getAllRestaurant() {
 		return restaurantRepository.findAll();
 	}*/

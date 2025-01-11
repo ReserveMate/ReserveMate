@@ -16,7 +16,7 @@ public interface RestaurantService {
 
 	RestaurantRegistrationDTO getRestaurantInfo(String email);
 
-	
+	List<RestaurantRegistrationDTO> getAllRestaurants();
 
 	Restaurant findById(long id);
 }
