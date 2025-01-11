@@ -4,7 +4,7 @@ import googleIcon from '../assets/google-icon.png';
 import appleIcon from '../assets/apple-icon.png';
 import { useNavigate } from "react-router-dom";
 import CommonService from '../Services/CommonService';
-import '../styles/Login.css';
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -44,17 +44,19 @@ function Login() {
   };
 
   return (
-
-    <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="header">
+    <div className="container vh-100 d-flex flex-column justify-content-center align-items-center">
+      {/* Header */}
+      <div className="mb-4 text-center">
         <h1>
-          <span style={{ color: 'black' }}>Reserve</span>
-          <span className="brand-red">Mate</span>
+          <Link to="/customer-home" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <span style={{ color: 'black' }}>Reserve</span>
+            <span className="text-danger">Mate</span>
+          </Link>
         </h1>
       </div>
+
+      {/* Login Card */}
       <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>
-
-
         <h2 className="text-center mb-3">Log in</h2>
 
         {error && <div className="alert alert-danger" role="alert">{error}</div>}
