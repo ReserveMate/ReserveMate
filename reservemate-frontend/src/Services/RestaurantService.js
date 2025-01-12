@@ -3,17 +3,15 @@ import axios from "axios";
 class RestaurantService{
     static BASE_URL = "http://localhost:8080"
 
-    static async registerRestaurant(restaurantData, token){
-        try{
-            const response = await axios.post(`${RestaurantService.BASE_URL}/public/register`, restaurantData, 
-            {
-                headers: {Authorization: `Bearer ${token}`}
-            })
+    static async registerRestaurant(restaurantData) {
+        try {
+            const response = await axios.post(`${RestaurantService.BASE_URL}/public/register`, restaurantData);         
             return response.data;
-        }catch(err){
+        } catch (err) {
             throw err;
         }
     }
+    
 
     static async getRestaurantInfo(token){
         try{

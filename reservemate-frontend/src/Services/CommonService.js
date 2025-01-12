@@ -56,10 +56,17 @@ class CommonService{
     static async getAllRestaurants() {
         try {
           const response = await axios.get(`${CommonService.BASE_URL}/public/all`);
-          console.log("Fetched restaurants data:", response.data); 
           return response.data;
         } catch (err) {
-          console.error("Error fetching restaurants:", err); 
+          throw err;
+        }
+      }
+
+      static async getRestaurantById(restaurantId) {
+        try {
+          const response = await axios.get(`${CommonService.BASE_URL}/public/${restaurantId}`);
+          return response.data;
+        } catch (err) {
           throw err;
         }
       }

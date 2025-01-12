@@ -1,8 +1,10 @@
 package com.reservemate.ReserveMate_backend.restaurant;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,31 +43,50 @@ public class RestaurantController {
 		return ResponseEntity.status(response.getStatusCode()).body(response);
 	}
 	
+	
 	@GetMapping("/public/all")
     public ResponseEntity<List<RestaurantRegistrationDTO>> getAllRestaurants() {
-        List<RestaurantRegistrationDTO> response = restaurantServiceImpl.getAllRestaurants();
-        if (response.isEmpty() || response.get(0).getStatusCode() == 404) {
-            return ResponseEntity.status(404).body(null);
-        }
-        return ResponseEntity.ok(response);
-    }
-	
-	/*
-	@GetMapping("/restaurant/{id}")
-    public ResponseEntity<List<RestaurantRegistrationDTO>> getRestaurantsById(@PathVariable Long id) {
-        List<RestaurantRegistrationDTO> restaurants = restaurantServiceImpl.getAllRestaurantsById(id);
-        
-        if (restaurants.isEmpty()) {
-            return ResponseEntity.status(404).body(null);
-        }
-        
-        return ResponseEntity.ok(restaurants);
-    }
-	
-	@GetMapping("/get-all-restaurants")
-	public ResponseEntity<RestaurantRegistrationDTO> getAllRestaurants() {
-		return ResponseEntity.ok(RestaurantServiceImpl.getAllRestaurants());
+        try {
+            
+            List<RestaurantRegistrationDTO> restaurantList = restaurantServiceImpl.getAllRestaurants();
 
-	}*/
+           
+            if (restaurantList.isEmpty() || restaurantList.get(0).getStatusCode() == 404) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restaurantList);
+            } else if (restaurantList.get(0).getStatusCode() == 500) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(restaurantList);
+            }
+
+            
+            return ResponseEntity.ok(restaurantList);
+
+        } catch (Exception e) {
+           
+            RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+            errorResponse.setStatusCode(500);
+            errorResponse.setError("Unexpected error occurred: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(List.of(errorResponse));
+        }
+    }
+	
+	
+	@GetMapping("/public/{id}")
+	public ResponseEntity<RestaurantRegistrationDTO> getRestaurantById(@PathVariable Long id) {
+	    try {
+	        RestaurantRegistrationDTO restaurant = restaurantServiceImpl.findRestaurantById(id);
+	        if (restaurant == null) {
+	            return ResponseEntity.status(404).body(null);
+	        }
+	        return ResponseEntity.ok(restaurant);
+	    } catch (Exception e) {
+	        RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
+	        errorResponse.setStatusCode(500);
+	        errorResponse.setError("Unexpected error occurred: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+	    }
+	}
+	
+	
+	
 
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import CommonService from "../Services/CommonService";
+import { Link } from 'react-router-dom';
+
 
 const CustomerHome = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,11 +12,10 @@ const CustomerHome = () => {
     const fetchRestaurants = async () => {
       try {
         const data = await CommonService.getAllRestaurants();
-        setRestaurants(data); 
-        setLoading(false);
+        setRestaurants(data);
       } catch (error) {
-        console.error("Error fetching restaurants:", error); 
         setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -24,10 +24,10 @@ const CustomerHome = () => {
   }, []);
 
   const convertBase64ToImage = (base64String) => {
-    if (!base64String.startsWith("data:image")) {
-      return `data:image/jpeg;base64,${base64String}`;
+    if (base64String && base64String.startsWith("data:image")) {
+      return base64String;
     }
-    return base64String;
+    return `data:image/jpeg;base64,${base64String}`;
   };
 
   return (
@@ -58,28 +58,28 @@ const CustomerHome = () => {
         <h2>Suggested for you...</h2>
         {loading && <p>Loading...</p>}
         {error && <p className="text-danger">Error: {error}</p>}
-        {!loading && !error && (
+        {!loading && !error && restaurants.length === 0 && <p>No restaurants found.</p>}
+        {!loading && !error && restaurants.length > 0 && (
           <div className="row">
             {restaurants.map((restaurant) => (
               <div className="col-md-4 mb-4" key={restaurant.id}>
                 <div className="card">
                   <img
-                    src={
-                      restaurant.picture
-                        ? convertBase64ToImage(restaurant.picture)
-                        : "https://via.placeholder.com/300x200"
-                    }
+                    src={convertBase64ToImage(restaurant.picture)}
                     className="card-img-top"
                     alt={restaurant.name}
                   />
                   <div className="card-body">
                     <h5 className="card-title">{restaurant.name}</h5>
+                    <p className="card-text">Mobile: {restaurant.mobile}</p>
+                    <p className="card-text">Operation Hours: {restaurant.operationHours}</p>
                     <p className="card-text">{restaurant.address}</p>
-                    <p className="card-text">
-                      Rating: {restaurant.rating || "N/A"} | {restaurant.reviews || 0} reviews
-                    </p>
-                    <p className="card-text">Operating Hours: {restaurant.operationHours || "Not Available"}</p>
-                    <button className="btn btn-danger">View</button>
+                    <Link
+                      to={`/restaurant-details/${restaurant.id}`}
+                      className="btn btn-danger text-white text-decoration-none"
+                    >
+                      View
+                    </Link>
                   </div>
                 </div>
               </div>
