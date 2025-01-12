@@ -3,8 +3,7 @@ import RestaurantService from '../Services/RestaurantService';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import placeholderIcon from '../assets/placeholder-icon.png';
-
-
+import CommonService from '../Services/CommonService';
 
 function RestaurantRegistration() {
 
@@ -20,7 +19,7 @@ function RestaurantRegistration() {
     address: '',
     operationHours: '',
     description: '',
-    picture: '',
+    picture: null,
     menu: null,
   });
 
@@ -39,9 +38,8 @@ function RestaurantRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
       const dataToSend = { ...formData, menu: formData.menu?.name };
-      await RestaurantService.registerRestaurant(dataToSend, token);
+      await RestaurantService.registerRestaurant(dataToSend);
       setFormData({
         name: '',
         email: '',
@@ -52,11 +50,22 @@ function RestaurantRegistration() {
         address: '',
         operationHours: '',
         description: '',
-        picture: '',
+        picture: null,
         menu: null,
       });
+
+      localStorage.setItem('token', dataToSend.token);
+      localStorage.setItem('role', dataToSend.role);
+
       alert('Registered successfully');
-      navigate('/restaurant-profile');
+
+      if (CommonService.isAuthenticated()) {
+        navigate('/restaurant-profile');
+      } else {
+        navigate('/login');
+      }
+
+      
     } catch (error) {
       console.error('Error Registering', error);
       alert('An error occurred while Registering');
@@ -80,19 +89,15 @@ function RestaurantRegistration() {
   return (
     <div className="d-flex flex-column vh-100">
 
-
-
       {/* Main Content Section */}
       <div className="d-flex flex-grow-1">
 
         {/* Logo Section */}
         <div className="d-flex flex-column justify-content-center align-items-center bg-light p-4 w-35">
-
           <h1>
             <span className="brand-red mb-3">Register</span>
           </h1>
           <img src={logo} className="img-fluid mb-3" alt="Logo" />
-         
         </div>
 
         {/* Form Section */}

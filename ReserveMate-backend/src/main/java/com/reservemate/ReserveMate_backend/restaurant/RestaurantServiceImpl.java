@@ -3,6 +3,7 @@ package com.reservemate.ReserveMate_backend.restaurant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -149,26 +150,59 @@ public class RestaurantServiceImpl implements RestaurantService{
 
 	    }
 	    
+	    
+
 	    @Override
 	    public List<RestaurantRegistrationDTO> getAllRestaurants() {
-	        List<RestaurantRegistrationDTO> restaurantDTOList = new ArrayList<>();
 	        try {
+	            // Fetch all restaurants from the repository
 	            List<Restaurant> restaurants = restaurantRepository.findAll();
-	            for (Restaurant restaurant : restaurants) {
-	                RestaurantRegistrationDTO dto = new RestaurantRegistrationDTO();
-	                dto.setUser(restaurant);
-	                dto.setStatusCode(200);
-	                dto.setMessage("Restaurants fetched successfully");
-	                restaurantDTOList.add(dto);
-	            }
+
+	            // Map each Restaurant entity to RestaurantRegistrationDTO
+	            return restaurants.stream()
+	                    .map(restaurant -> {
+	                        RestaurantRegistrationDTO dto = new RestaurantRegistrationDTO();
+	                        dto.setName(restaurant.getName());     
+	                        dto.setMobile(restaurant.getMobile());
+	                        dto.setDistrict(restaurant.getDistrict());
+	                        dto.setCity(restaurant.getCity());	                        
+	                        dto.setOperationHours(restaurant.getOperationHours());
+	                        dto.setPicture(restaurant.getPicture());     
+	                        dto.setStatusCode(200); 
+	                        dto.setMessage("Restaurant fetched successfully");
+	                        return dto;
+	                    })
+	                    .collect(Collectors.toList());
+
 	        } catch (Exception e) {
+	            
 	            RestaurantRegistrationDTO errorResponse = new RestaurantRegistrationDTO();
 	            errorResponse.setStatusCode(500);
 	            errorResponse.setError("Error occurred while fetching restaurants: " + e.getMessage());
-	            restaurantDTOList.add(errorResponse);
+	            return List.of(errorResponse);
 	        }
-	        return restaurantDTOList;
 	    }
+	    
+	    @Override
+	    public RestaurantRegistrationDTO findRestaurantById(Long id) {
+	        Restaurant restaurant = restaurantRepository.findById(id);
+	        if (restaurant != null) {
+	        	RestaurantRegistrationDTO dto = new RestaurantRegistrationDTO();
+	            dto.setName(restaurant.getName());
+	            dto.setMobile(restaurant.getMobile());
+	            dto.setDistrict(restaurant.getDistrict());
+	            dto.setCity(restaurant.getCity());
+	            dto.setOperationHours(restaurant.getOperationHours());
+	            dto.setPicture(restaurant.getPicture());
+	            dto.setDescription(restaurant.getDescription());
+	            
+	            dto.setStatusCode(200);
+	            dto.setMessage("Restaurant fetched successfully");
+	            return dto;
+	        }
+	        return null;
+	    }
+
 	    /*
 	    
 	    @Override
@@ -202,35 +236,8 @@ public class RestaurantServiceImpl implements RestaurantService{
 	    }
 	    */
 	    
-	    /*
-	    @Override
-		 public RestaurantRegistrationDTO getAllRestaurants() {
-			 RestaurantRegistrationDTO reqRes = new RestaurantRegistrationDTO();
-
-		        try {
-		            List<Restaurant> result = restaurantRepository.findAll();
-		            if (!result.isEmpty()) {
-		                //reqRes.setUserList(result);
-		                reqRes.setStatusCode(200);
-		                reqRes.setMessage("Successful");
-		            } else {
-		                reqRes.setStatusCode(404);
-		                reqRes.setMessage("No users found");
-		            }
-		            return reqRes;
-		        } catch (Exception e) {
-		            reqRes.setStatusCode(500);
-		            reqRes.setMessage("Error occurred: " + e.getMessage());
-		            return reqRes;
-		        }
-		    }
 	    
 	    
-	
-	@Override
-	public List<Restaurant> getAllRestaurant() {
-		return restaurantRepository.findAll();
-	}*/
 	
 	    @Override
 		public Restaurant findById(long id) {

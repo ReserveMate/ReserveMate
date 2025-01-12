@@ -9,7 +9,7 @@ const Header = () => {
 
   const handleLogout = () => {
     CommonService.logout();
-    navigate('/customer-signup'); // Redirect to the signup page after logout
+    navigate('/'); 
   };
 
   return (

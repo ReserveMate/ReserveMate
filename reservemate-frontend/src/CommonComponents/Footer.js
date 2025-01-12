@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-dark text-white text-center py-4">
       <div className="container">
         <p className="mb-0">ReserveMate. We deliver your moments instantly and memorably.</p>
-        {(!CommonService.isAuthenticated() || CommonService.isCustomer()) && (
+        {(!CommonService.isAuthenticated() || !CommonService.isRestaurant()) && (
           <button className="btn btn-danger mt-2">
             <Link to="/restaurant-registration" className="text-white text-decoration-none">
               Become Restaurant Owner

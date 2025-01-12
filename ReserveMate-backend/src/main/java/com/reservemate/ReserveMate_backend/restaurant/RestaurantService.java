@@ -19,4 +19,6 @@ public interface RestaurantService {
 	List<RestaurantRegistrationDTO> getAllRestaurants();
 
 	Restaurant findById(long id);
+	
+	RestaurantRegistrationDTO findRestaurantById(Long id);
 }

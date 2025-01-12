@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import CustomerService from '../Services/CustomerService';
 import { useNavigate } from 'react-router-dom';
+import CommonService from '../Services/CommonService'; // Ensure you import the CommonService
 import logo from '../assets/logo.png';
 import placeholderIcon from '../assets/placeholder-icon.png';
 import facebookIcon from '../assets/facebook-icon.png';
 import googleIcon from '../assets/google-icon.png';
 import appleIcon from '../assets/apple-icon.png';
-import { Link } from 'react-router-dom';
 
 function CustomerSignup() {
   const navigate = useNavigate();
@@ -29,19 +29,20 @@ function CustomerSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await CustomerService.customerSignup(formData, token);
-      setFormData({
-        name: '',
-        email: '',
-        password: '',
-        mobile: '',
-        district: '',
-        city: '',
-        picture: '',
-      });
+      const data = await CustomerService.customerSignup(formData);
+
+      // Save token in localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
+
       alert('Sign up successfully');
-      navigate('/customer-home');
+
+      
+      if (CommonService.isAuthenticated()) {
+        navigate('/');
+      } else {
+        navigate('/login');
+      }
     } catch (error) {
       console.error('Error Signing up :', error);
       alert('An error occurred while Signing up');
@@ -65,7 +66,6 @@ function CustomerSignup() {
   return (
     <div className="d-flex flex-column vh-100">
 
-
       {/* Main Content Section */}
       <div className="d-flex flex-grow-1">
 
@@ -75,7 +75,6 @@ function CustomerSignup() {
             <span className="brand-red mb-3">Sign</span>Up
           </h1>
           <img src={logo} className="img-fluid" alt="Logo" />
-
         </div>
 
         {/* Form Section */}

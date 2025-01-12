@@ -22,10 +22,9 @@ function App() {
         <Route path="/customer-signup" element={<CustomerSignup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/restaurant-registration" element={<RestaurantRegistration />} />
-        <Route path="/customer-home" element={<CustomerHome />} />
         <Route path="/restaurant-profile" element={<RestaurantProfile />} />
         <Route path="/admin-profile" element={<AdminHome />} />
-        <Route path="/restaurant-details" element={<RestaurantDetails />} />
+        <Route path="/restaurant-details/:id" element={<RestaurantDetails />} />
       </Routes>
 
       </div>

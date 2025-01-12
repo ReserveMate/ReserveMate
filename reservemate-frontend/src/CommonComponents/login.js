@@ -25,7 +25,7 @@ function Login() {
         if (userData.role === 'RESTAURANT') {
           navigate('/restaurant-profile');
         } else if (userData.role === 'CUSTOMER') {
-          navigate('/customer-home');
+          navigate('/');
         } else if (userData.role === 'ADMIN') {
           navigate('/admin-home');
         } else {
@@ -48,7 +48,7 @@ function Login() {
       {/* Header */}
       <div className="bg-danger text-center py-3 fixed-top">
         <h1 className="m-0">
-          <Link to="/customer-home" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <span style={{ color: 'black' }}>Reserve</span>
             <span className="text-white">Mate</span>
           </Link>

@@ -3,17 +3,15 @@ import axios from "axios";
 class CustomerService{
     static BASE_URL = "http://localhost:8080"
 
-    static async customerSignup(customerData, token){
-        try{
-            const response = await axios.post(`${CustomerService.BASE_URL}/public/signup`, customerData, 
-            {
-                headers: {Authorization: `Bearer ${token}`}
-            })
+    static async customerSignup(customerData) {
+        try {
+            const response = await axios.post(`${CustomerService.BASE_URL}/public/signup`, customerData);
             return response.data;
-        }catch(err){
+        } catch (err) {
             throw err;
         }
     }
+    
 
     static async getCustomerInfo(token){
         try{
